@@ -6,44 +6,216 @@
   <title>Our Services - Petcare</title>
   <link rel="shortcut icon" type="x-icon" href="/photos/pet-care_logo_1.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
   <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --success-color: #27ae60;
+      --warning-color: #f39c12;
+      --light-bg: #f8f9fa;
+      --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
     body {
-      font-family: 'system-ui', 'Segoe UI', 'Helvetica Neue', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 1rem;
       line-height: 1.6;
       color: #333;
+      background-color: #ffffff;
     }
 
     h1, h2, h3, h4, .display-4 {
       font-weight: 700;
+      color: var(--primary-color);
     }
 
+    /* Navbar Styling */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      color: var(--primary-color) !important;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      margin: 0 5px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: var(--secondary-color);
+      color: white !important;
+    }
+
+    .nav-link.active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+    }
+
+    /* Service Cards */
     .service-card {
-      background: linear-gradient(145deg, #ffffff, #f8f9fa);
-      border-radius: 12px;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      background: white;
+      border-radius: 15px;
+      transition: all 0.3s ease;
       overflow: hidden;
+      box-shadow: var(--card-shadow);
+      border: none;
+      height: 100%;
     }
 
     .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-      cursor: pointer;
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
     }
 
     .service-image {
-      height: 220px;
+      height: 200px;
       object-fit: cover;
       width: 100%;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
     }
-    .btn-service {
-      margin-top: 10px;
+
+    .badge-category {
+      background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
       font-weight: 600;
-      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-title {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .card-text {
+      color: #666;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .btn-service {
+      background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+      border: none;
+      border-radius: 25px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+    }
+
+    .btn-service:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+      color: white;
+    }
+
+    /* Service Icons */
+    .service-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .card-body {
+      position: relative;
+      padding: 1.5rem;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: var(--primary-color);
+      color: white;
+      padding: 60px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--warning-color);
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: white;
+      padding: 40px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section h2 {
+        font-size: 2rem;
+      }
+      
+      .hero-section .lead {
+        font-size: 1.1rem;
+      }
+      
+      .service-card {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Animation for page load */
+    .service-card {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -51,14 +223,14 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
     <!-- Logo and Brand -->
     <a class="navbar-brand d-flex align-items-center" href="homepage.html">
       <img src="/photos/pet-care_logo_1.png" alt="Logo" width="60" height="40" class="d-inline-block me-2">
       <strong>PetCare</strong>
     </a>
-  <div class="container">
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -66,22 +238,27 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary me-2" href="homepage.html">Home</a>
+          <a class="nav-link btn btn-outline-primary me-2" href="homepage.html">
+            <i class="fas fa-home me-1"></i>Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary me-2 active" href="service.html">Services</a>
+          <a class="nav-link btn btn-outline-primary me-2 active" href="service.html">
+            <i class="fas fa-paw me-1"></i>Services
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary" href="contact.html">Contact</a>
+          <a class="nav-link btn btn-outline-primary" href="contact.html">
+            <i class="fas fa-envelope me-1"></i>Contact
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<div style="padding-top: 40px;"></div>
 
-<!-- Services Introduction -->
-<section class="py-5" id="service">
+<!-- Hero Section -->
+<section class="py-5 bg-light"></section>
   <div class="container text-center">
     <h2 class="mb-2">Our Services</h2>
     <p class=" lead">
@@ -93,84 +270,126 @@
 </section>
 
 <!-- Services Cards -->
-<section class="py-5 bg-light" >
+<section class="py-5 bg-light">
   <div class="container">
     <div class="row g-4">
 
       <!-- Pet Sitting -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/cat-care.jpg" alt="Pet Sitting" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/cat-care.jpg" alt="Pet Sitting" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-home"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Pet Sitting</span>
+            <span class="badge badge-category mb-3">Pet Sitting</span>
             <h4 class="card-title">Reliable Care While You're Away</h4>
-            <p class="card-text">Loving, trusted sitters ready to care for your pets anytime you need.</p>
-            <a href="/pet_sitting_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <p class="card-text">Professional, loving sitters provide personalized care for your pets in the comfort of your home. Available 24/7 for your peace of mind.</p>
+            <a href="/pet_sitting_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Dog Walking -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/dog-walk.jpg" alt="Dog Walking" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/dog-walk.jpg" alt="Dog Walking" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-walking"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Dog Walking</span>
-            <h4 class="card-title">Daily Walks and Fresh Air</h4>
-            <p class="card-text">Professional dog walkers to keep your pets active, fit, and happy.</p>
-            <a href="/pet_walking_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <span class="badge badge-category mb-3">Dog Walking</span>
+            <h4 class="card-title">Daily Exercise & Fresh Air</h4>
+            <p class="card-text">Certified dog walkers ensure your furry friends get the exercise they need. Flexible scheduling to fit your busy lifestyle.</p>
+            <a href="/pet_walking_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Grooming -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/catrelax.jpg" alt="Grooming" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/catrelax.jpg" alt="Grooming" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-cut"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Grooming</span>
-            <h4 class="card-title">Pamper Your Pet</h4>
-            <p class="card-text">Haircuts, nail trimming, bathing everything to keep them looking fabulous.</p>
-            <a href="/pet_grooming_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <span class="badge badge-category mb-3">Grooming</span>
+            <h4 class="card-title">Spa Day for Your Pet</h4>
+            <p class="card-text">Complete grooming services including haircuts, nail trimming, bathing, and styling. Your pet will look and feel amazing!</p>
+            <a href="/pet_grooming_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Training -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/dog-training.jpeg" alt="Training" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/dog-training.jpeg" alt="Training" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Training</span>
-            <h4 class="card-title">Behavior and Obedience Classes</h4>
-            <p class="card-text">Fun and effective training for good behavior and better bonding.</p>
-            <a href="/pet_training_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <span class="badge badge-category mb-3">Training</span>
+            <h4 class="card-title">Professional Training Classes</h4>
+            <p class="card-text">Expert trainers help improve behavior and strengthen the bond between you and your pet through positive reinforcement methods.</p>
+            <a href="/pet_training_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Veterinary -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/pet-vet.jpeg" alt="Veterinary" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/pet-vet.jpeg" alt="Veterinary" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-stethoscope"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Veterinary</span>
-            <h4 class="card-title">On-Call Vet Support</h4>
-            <p class="card-text">Emergency or regular health checkups by professional vets at your service.</p>
-            <a href="/pet_veterinary_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <span class="badge badge-category mb-3">Veterinary</span>
+            <h4 class="card-title">Expert Medical Care</h4>
+            <p class="card-text">Licensed veterinarians provide comprehensive health services including checkups, vaccinations, and emergency care for optimal pet health.</p>
+            <a href="/pet_veterinary_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
 
       <!-- Pet Boarding -->
       <div class="col-md-4">
-        <div class="card service-card h-100">
-          <img src="/photos/pet_boarding.jpg" alt="Pet Boarding" class="service-image">
+        <div class="card service-card">
+          <div class="position-relative">
+            <img src="/photos/pet_boarding.jpg" alt="Pet Boarding" class="service-image">
+            <div class="service-icon">
+              <i class="fas fa-bed"></i>
+            </div>
+          </div>
           <div class="card-body text-center d-flex flex-column">
-            <span class="badge badge-category mb-2">Pet Boarding</span>
-            <h4 class="card-title">Home Away from Home</h4>
-            <p class="card-text">Safe, cozy overnight stays for your pets while you're away. Professional care in a pet-friendly environment.</p>
-            <a href="/pet_boarding_booking.html" class="btn btn-primary btn-service mt-auto">Book Now</a>
+            <span class="badge badge-category mb-3">Pet Boarding</span>
+            <h4 class="card-title">Luxury Home Away from Home</h4>
+            <p class="card-text">Premium boarding facilities with spacious accommodations, play areas, and 24/7 supervision. Your pets will love their vacation too!</p>
+            <a href="/pet_boarding_booking.html" class="btn btn-service mt-auto">
+              <i class="fas fa-calendar-plus me-2"></i>Book Now
+            </a>
           </div>
         </div>
       </div>
@@ -179,10 +398,55 @@
   </div>
 </section>
 
+<!-- Stats Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Happy Pets</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Expert Staff</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Available Support</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">5★</div>
+          <div class="stat-label">Customer Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Footer -->
-<footer class="text-center py-4 bg-dark text-light">
-  <p>&copy; 2025 Petcare. All rights reserved.</p>
+<footer class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h5 class="mb-3">PetCare - Your Trusted Pet Service Partner</h5>
+        <p class="mb-2">
+          <i class="fas fa-phone me-2"></i>+1 (555) 123-4567 | 
+          <i class="fas fa-envelope me-2 ms-3"></i>info@petcare.com
+        </p>
+        <p>&copy; 2025 PetCare. All rights reserved. Made with <i class="fas fa-heart text-danger"></i> for pets.</p>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
