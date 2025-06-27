@@ -4,55 +4,150 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PetCare - Home</title>
-  <link rel="shortcut icon" type="x-icon" href="/photos/pet-care_logo_1.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/photos/pet-care_logo_1.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
   <style>
-    .hero {
-  background: url('/photos/hero.jpg') center/cover no-repeat;
-  padding: 120px 0;
-  color: #ffffff;
-  text-align: center;
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
 
-.hero h1 {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-}
+   /* Navbar Styling */
+  .navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
 
-.hero p.lead {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.25rem;
-  color: #f1f1f1;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: #2c3e50 !important;
+  }
 
+  .navbar-brand strong {
+    font-weight: 700;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    margin: 0 5px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    color: #0d6efd !important;
+  }
+
+  .nav-link:hover {
+    background-color: #3498db;
+    color: white !important;
+  }
+
+  .nav-link.active {
+    background-color: #2c3e50 !important;
+    color: white !important;
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+
+   .hero-clean {
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  border-bottom: 1px solid #dee2e6;
+  }
+  
+  .hero-clean h1 {
+    color: #0d6efd;
+    font-family: 'Segoe UI', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .hero-clean p {
+    color: #444;
+  }
+
+  .hero-clean .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .hero-clean .btn-primary:hover {
+    background-color: #0b5ed7;
+  }
+
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlight {
+      background-color: #ffffff;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      color: #0d6efd;
+      margin-bottom: 10px;
+    }
+
+    .testimonial {
+      background-color: #ffffff;
+      padding: 20px;
+      border-left: 4px solid #0d6efd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+
+    footer {
+      background-color: #212529;
+    }
   </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
   <div class="container">
     <!-- Logo and Brand -->
     <a class="navbar-brand d-flex align-items-center" href="homepage.html">
-      <img src="/photos/pet-care_logo_1.png" alt="Logo" width="60" height="40" class="d-inline-block me-2">
+      <img src="/photos/pet-care_logo_1.png" alt="Logo" width="60" height="40" class="me-2">
       <strong>PetCare</strong>
     </a>
+
+    <!-- Toggler for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Items -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary me-2 active" href="homepage.html">Home</a>
+          <a class="nav-link btn btn-outline-primary me-2 active" href="homepage.html">
+            <i class="fas fa-home me-1"></i>Home
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary me-2" href="services.html">Services</a>
+          <a class="nav-link btn btn-outline-primary me-2" href="services.html">
+            <i class="fas fa-paw me-1"></i>Services
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary me-2" href="contact.html">Contact</a>
+          <a class="nav-link btn btn-outline-primary" href="contact.html">
+            <i class="fas fa-envelope me-1"></i>Contact
+          </a>
         </li>
       </ul>
     </div>
@@ -61,27 +156,25 @@
 
 
 <!-- Hero Section -->
-<section class="hero text-center">
-  <div class="container">
-    <h1 class="display-4 fw-bold text-black">Compassionate Pet Care at Your Fingertips</h1>
-    <p class="lead text-black">Making your pet’s life easier and happier, one service at a time.</p>
-    <a href="services.html" class="btn btn-light btn-lg mt-3">Start Booking</a>
+<section class="hero-clean text-center text-dark py-5">
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold mb-3">Welcome to PetCare</h1>
+    <p class="lead mb-4">Your trusted partner in pet sitting, walking, and grooming — all with love and care.</p>
+    <a href="services.html" class="btn btn-primary btn-lg px-4 rounded-pill">Explore Services</a>
   </div>
 </section>
 
-<!-- About Section -->
+
+<!-- About -->
 <section class="py-5">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-md-6 mb-4 mb-md-0">
+      <div class="col-md-6 mb-4">
         <img src="/photos/About_us.png" class="img-fluid rounded" alt="About Us">
       </div>
       <div class="col-md-6">
-        <h2 class="section-title fs-2">Welcome to PetCare</h2>
-        <p class="fs-5">Welcome to PetCare a place where pets come first and their happiness means everything. We understand that your furry companions are more than just animals they're family. That’s why we created PetCare, 
-            a service-driven platform designed to simplify the way you care for your pets. Whether you're at work, out of town, or just need a little help, we offer reliable support with heart. From walking and grooming 
-            to personalized sitting services, everything we do is guided by compassion, trust, and a deep love for animals. 
-            At PetCare, we’re committed to giving your pets the same care and comfort they’d get at home because they deserve nothing less.</p>
+        <h2 class="section-title">Welcome to PetCare</h2>
+        <p class="fs-4">We understand that your furry companions are more than just animals—they're family. That’s why PetCare is here to help with everything from grooming to sitting and walking services. Whether you’re busy or out of town, we ensure your pet is cared for with love and professionalism.</p>
       </div>
     </div>
   </div>
@@ -93,26 +186,26 @@
     <h2 class="section-title">Our Core Services</h2>
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="p-4 bg-white border rounded h-100">
+        <div class="p-4 bg-light border rounded h-100">
           <div class="service-icon"><i class="bi bi-house-heart"></i></div>
           <h5>Pet Sitting</h5>
-          <p>Safe, calm and personalized sitting services for your pet while you're away.</p>
+          <p>Safe and personalized care while you're away.</p>
           <a href="pet_sitting_booking.html" class="btn btn-outline-primary btn-sm">Book Now</a>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="p-4 bg-white border rounded h-100">
+        <div class="p-4 bg-light border rounded h-100">
           <div class="service-icon"><i class="bi bi-heart-pulse"></i></div>
           <h5>Dog Walking</h5>
-          <p>Gentle exercise, fresh air and a happy routine for your energetic pup.</p>
+          <p>Daily exercise and fresh air for your pup.</p>
           <a href="pet_walking_booking.html" class="btn btn-outline-primary btn-sm">Book Now</a>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="p-4 bg-white border rounded h-100">
+        <div class="p-4 bg-light border rounded h-100">
           <div class="service-icon"><i class="bi bi-scissors"></i></div>
           <h5>Grooming</h5>
-          <p>Keep your pet fresh, clean and stylish with our professional grooming options.</p>
+          <p>Keep your pet fresh, clean and stylish.</p>
           <a href="pet_grooming_booking.html" class="btn btn-outline-primary btn-sm">Book Now</a>
         </div>
       </div>
@@ -121,9 +214,9 @@
 </section>
 
 <!-- Testimonials -->
-<section class="py-5 text-center">
-  <div class="container">
-    <h2 class="section-title mb-4">What Our Users Say</h2>
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="section-title">What Our Users Say</h2>
     <div class="row g-4">
       <div class="col-md-4">
         <div class="testimonial">“My dog looked happier than ever when I got back. Booking was quick and simple.”<br><strong>- Aayush K.</strong></div>
@@ -139,7 +232,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-dark text-light text-center py-4">
+<footer class="text-light text-center py-4">
   <p class="mb-0">&copy; 2025 PetCare Pvt. Ltd. All rights reserved.</p>
 </footer>
 
