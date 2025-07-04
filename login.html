@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="shortcut icon" type="x-icon" href="/photos/pet-care_logo_1.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: url(https://cdn.vectorstock.com/i/500p/54/12/modern-abstract-hexagon-background-vector-56035412.jpg) no-repeat;
+      border: 2px solid rgba(255, 255, 255, .2);
+      backdrop-filter: blur(10px);
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: transparent;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .login-image {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+
+    .login-form {
+      padding: 3rem;
+    }
+
+    .form-control {
+      padding: 1rem;
+      border-radius: 10px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 5px rgba(33, 37, 41, 0.3);
+    }
+
+    .btn-dark {
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .login-image {
+        display: none;
+      }
+
+      .login-form {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="row login-container">
+    <!-- Image Column -->
+    <div class="col-lg-5 d-none d-lg-block p-0">
+      <img src="C:\Users\Kreepa\OneDrive\Desktop\kripa\MinorII\images\bgg.jpg" alt="Dog" class="login-image" />
+    </div>
+
+    <!-- Form Column -->
+    <div class="col-lg-7 login-form">
+      <h2 class="fw-bold mb-4">Welcome back :)</h2>
+      <form>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Email address" required />
+        </div>
+        <div class="mb-4">
+          <input type="password" class="form-control" placeholder="Password" required />
+        </div>
+        <div class="d-grid mb-4">
+          <button type="submit" class="btn btn-dark py-2">Login</button>
+        </div>
+        <p class="mb-0">
+          Don't have an account?
+          <a href="C:\Users\Kreepa\OneDrive\Desktop\kripa\MinorII\html\owner-registration.html">Register here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

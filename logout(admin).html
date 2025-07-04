@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logout</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #212529;
+  color: white;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar h4 {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  color: #adb5bd;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.main {
+  margin-left: 220px;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    left: -220px;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .main {
+    margin-left: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>Logging out...</h1>
+  <script>
+    // You can redirect or clear sessions here
+    window.location.href = 'login.html'; // Redirect after logout
+  </script>
+</body>
+</html>
