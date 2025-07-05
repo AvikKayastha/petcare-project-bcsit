@@ -20,22 +20,22 @@
     <div class="mx-auto bg-white p-5 rounded-4 shadow" style="max-width: 900px;">
       <h2 class="text-center mb-4">Create Your Account</h2>
 
-      <form>
+      <form action="/create" method="POST">
         <div class="row">
           <!-- Owner Details -->
           <div class="col-md-6">
             <h5>Owner Details:</h5>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="First Name" required>
+              <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Last Name" required>
+              <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
             </div>
             <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email Address" required>
+              <input type="email" class="form-control" name="email" placeholder="Email Address" required>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Phone Number" required>
+              <input type="text" class="form-control" name="phonenumber" placeholder="Phone Number" required>
             </div>
           </div>
 
@@ -43,10 +43,10 @@
           <div class="col-md-6">
             <h5>Pet Details:</h5>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Pet Name" required>
+              <input type="text" class="form-control" name="petname" placeholder="Pet Name" required>
             </div>
             <div class="mb-3">
-              <select id="dogs" class="form-select" required>
+              <select id="dogs" class="form-select" name="pettype" required>
                 <option selected disabled>Select Breed</option>
                 <option value="pug">Pug</option>
                 <option value="husky">Husky</option>
@@ -63,7 +63,7 @@
               </select>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Pet Nickname (Optional)">
+              <input type="text" class="form-control"name="petnickname" placeholder="Pet Nickname (Optional)">
             </div>
           </div>
         </div>
