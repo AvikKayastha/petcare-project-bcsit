@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -125,6 +125,12 @@
             font-size: 16px;
             color: #fff;
             font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(63, 56, 56, 0.5);
+            /* grey with 50% opacity */
         }
 
         .container p {
@@ -222,6 +228,12 @@
             background: transparent;
             border: 2px solid #fff;
             box-shadow: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-panel .btn:hover {
+            background-color: rgba(63, 56, 56, 0.5);
+            /* grey with 50% opacity */
         }
 
         @media screen and (max-width:650px) {
@@ -312,31 +324,28 @@
             <form action="">
                 <h1>Registration</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx  bx-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" placeholder="Enter your Email" required>
                     <i class='bx  bx-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Create a new Password" required>
                     <i class='bx  bx-lock'></i>
                 </div>
-                <button type="submit" class="btn">Register</button>
-                <div class="already">
-                    <a href="#">Already have an account?</a>
+                <div class="input-box">
+                    <input type="confirmpassword" placeholder="Confirm Password" required>
                 </div>
+                <div id="error" style="color: red; font-size: 14px;"></div>
+                <button type="submit" class="btn">Register</button>
             </form>
         </div>
         <div class="toggle-box">
             <div class="toggle-panel toggle-left">
-                <h1>Hello, Welcome:)</h1>
+                <h1>Hello, Welcome:)</h1><br>
                 <p>Don't have an account?</p>
                 <button class="btn register-btn">Register</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1> Welcome back!</h1>
+                <h1> Welcome back!</h1><br>
                 <p>Already have an account?</p>
                 <button class="btn login-btn">Login</button>
             </div>
@@ -353,6 +362,9 @@
 
         loginBtn.addEventListener('click', () => {
             container.classList.remove('active');
+
+
+
         });
     </script>
 </body>
