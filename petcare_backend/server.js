@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import contactRoutes from './route/contactRoutes.js';
+import petwalkRoutes from './route/petwalkRoutes.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors());
 app.use('/api/contact', contactRoutes);
+app.use('/api/petwalk', petwalkRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
