@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import contactRoutes from './route/contactRoutes.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cors());
 app.use('/api/contact', contactRoutes);
 
 // Root Route

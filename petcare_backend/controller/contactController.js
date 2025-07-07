@@ -1,5 +1,4 @@
-import Contact from '../models/contact.js';
-
+import Contact from "../models/contact.js";
 export const submitContact = async (req, res) => {
   try {
     const contact = new Contact({
@@ -9,8 +8,9 @@ export const submitContact = async (req, res) => {
       message: req.body.message,
     });
     await contact.save();
-    res.status(201).json(contact);
+    return res.status(201).json({ message: "Contact saved successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error saving contact:", error);
+    return res.status(500).json({ message: "Server error while saving contact" });
   }
 };
