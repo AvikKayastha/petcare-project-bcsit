@@ -185,36 +185,36 @@
       <h3 class="text-center mb-4">Book Your Pet Walking Service</h3>
       <form>
         <div class="row g-3">
-          <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Your Name" required>
-          </div>
-          <div class="col-md-6">
-            <input type="email" class="form-control" placeholder="Your Email" required>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Pet Name" required>
-          </div>
-          <div class="col-md-6">
-            <select class="form-select" required>
-              <option selected disabled>Type of Pet</option>
-              <option>Dog</option>
-              <option>Cat</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <input type="date" class="form-control" required>
-          </div>
-          <div class="col-md-6">
-            <input type="number" class="form-control" placeholder="Number of Hours" required>
-          </div>
-          <div class="col-12">
-            <textarea class="form-control" rows="4" placeholder="Special Instructions (Optional)"></textarea>
-          </div>
-          <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary px-5 mt-3">Book Now</button>
-          </div>
-        </div>
-      </form>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+    </div>
+    <div class="col-md-6">
+      <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="petName" placeholder="Pet Name" required>
+    </div>
+    <div class="col-md-6">
+      <select class="form-select" name="petType" required>
+        <option selected disabled>Type of Pet</option>
+        <option>Dog</option>
+        <option>Cat</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="date" class="form-control" name="date" required>
+    </div>
+    <div class="col-md-6">
+      <input type="number" class="form-control" name="hours" placeholder="Number of Hours" required>
+    </div>
+    <div class="col-12">
+      <textarea class="form-control" name="notes" rows="4" placeholder="Special Instructions (Optional)"></textarea>
+    </div>
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary px-5 mt-3">Book Now</button>
+    </div>
+  </div>
+  </form>
     </div>
   </div>
 </section>
