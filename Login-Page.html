@@ -47,8 +47,19 @@
                 <div class="input-box">
                     <input type="confirmpassword" placeholder="Confirm Password" required>
                 </div>
-                <label>
-                    <button type="submit" class="btn">Register</button>
+                <div class="role-section">
+                    <div class="role-title">Select Role:</div>
+
+                    <div class="role-options">
+                        <label>
+                            <input type="radio" name="role" value="owner" required> Pet Owner
+                        </label>
+                        <label>
+                            <input type="radio" name="role" value="caretaker"> Pet Caretaker
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Register</button>
             </form>
         </div>
         <div class="toggle-box">
