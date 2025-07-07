@@ -4,15 +4,16 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import userRoutes from './route/userRoutes.js'; // Import user routes
 import connectDB from './config/db.js';
 
-
+// ES Modules (import syntax), those are not available by default. So you need to manually define them like this
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
 dotenv.config(); 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);// __filename gives current file path
+const __dirname = dirname(__filename); // __dirname gives current folder path
 
 
 
@@ -25,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
+// Use user routes under /api path
+app.use('/api', userRoutes);
+
 // Root Route
 app.get('/', (req, res) => {
   res.redirect('/login-page.html'); 
@@ -32,7 +36,7 @@ app.get('/', (req, res) => {
 
 // register page
 app.post('/create', async (req, res) => {
-  let { email, password, cpassword } = req.body; 
+  let {name, email, password, cpassword, role } = req.body; 
 
   // validate password/ compare with confirm password
   if (password !== cpassword) {
@@ -46,8 +50,10 @@ app.post('/create', async (req, res) => {
     
     // create user
     const createdUser = await userModel.create({
+      name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      role
     });
 
     // generate token
@@ -86,7 +92,7 @@ app.post('/login', async function (req, res) {
 })
 
 // Logout 
-app.get("/logout", function(req, res) {
+app.post("/logout", function(req, res) {
   res.clearCookie("token", "");
   res.redirect("/login-page.html");
 })
