@@ -13,14 +13,14 @@
 <body>
     <div class="container">
         <div class="form-box login">
-            <form action="">
+            <form action="/login" method="post">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="email" placeholder="Email" name="email" required>
                     <i class='bx  bx-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" name="password" required>
                     <i class='bx  bx-lock'></i>
                 </div>
                 <button type="submit" class="btn">Login</button>
@@ -33,6 +33,10 @@
             <form action="/create" method="POST">
                 <h1>Registration</h1>
                 <div class="input-box">
+                    <input type="text" placeholder="Username" name="name" required>
+                    <i class='bx  bx-user'></i>
+                </div>
+                <div class="input-box">
                     <input type="email" placeholder="Enter your Email" name="email" required>
                     <i class='bx  bx-envelope'></i>
                 </div>
@@ -41,9 +45,20 @@
                     <i class='bx  bx-lock'></i>
                 </div>
                 <div class="input-box">
-                    <input type="confirmpassword" placeholder="Confirm Password" name="cpassword" required>
+                    <input type="password" placeholder="Confirm Password" name="cpassword" required>
                 </div>
-                <div id="error" style="color: red; font-size: 14px;"></div>
+                <div class="role-section">
+                    <div class="role-title">Select Role:</div>
+
+                    <div class="role-options">
+                        <label>
+                            <input type="radio" name="role" value="owner" required> Pet Owner
+                        </label>
+                        <label>
+                            <input type="radio" name="role" value="caretaker"> Pet Caretaker
+                        </label>
+                    </div>
+                </div>
                 <button type="submit" class="btn">Register</button>
             </form>
         </div>

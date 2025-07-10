@@ -14,7 +14,16 @@ import dotenv from 'dotenv';
 dotenv.config(); 
 const __filename = fileURLToPath(import.meta.url);// __filename gives current file path
 const __dirname = dirname(__filename); // __dirname gives current folder path
+const isProduction = process.env.NODE_ENV === 'production';
 
+// Token generators
+function generateAccessToken(user) {
+  return jwt.sign({ email: user.email, role: user.role }, process.env.JWT_SECRET, { expiresIn: '5m' }); // 5 min access
+}
+
+function generateRefreshToken(user) {
+  return jwt.sign({ email: user.email }, process.env.REFRESH_SECRET, { expiresIn: '7d' }); // 7 day refresh
+}
 
 
 const app = express();
@@ -26,12 +35,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
+// Serve login page without .html in URL
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login-page.html'));
+});
+
 // Use user routes under /api path
 app.use('/api', userRoutes);
 
 // Root Route
 app.get('/', (req, res) => {
-  res.redirect('/login-page.html'); 
+  res.redirect('/login'); 
 });
 
 // register page
@@ -40,7 +54,7 @@ app.post('/create', async (req, res) => {
 
   // validate password/ compare with confirm password
   if (password !== cpassword) {
-    return res.send('Passwords do not match');
+    return res.status(400).send('Passwords do not match');
   }
 
   try{
@@ -57,19 +71,30 @@ app.post('/create', async (req, res) => {
     });
 
     // generate token
-    let token = jwt.sign({ email }, process.env.JWT_SECRET);
+     const accessToken = generateAccessToken(createdUser);
+    const refreshToken = generateRefreshToken(createdUser);
 
-    // set cookie
-    res.cookie('token', token , {
-      httpOnly: true, // This cookie can only be used by the server, not by any JavaScript running in the browser.
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
+    // set access token cookie
+    res.cookie('token', accessToken, {
+      httpOnly: true,
+      maxAge: 5 * 60 * 1000, // 5 minutes
+      sameSite: 'strict', // Prevent Cross-Site Request Forgery.
+      secure: isProduction 
     });
 
-    // send response
+     // Set refresh token cookie
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      sameSite: 'strict',
+      secure: isProduction // Enable secure cookies only in production (HTTPS) not http.
+    });
+
+    res.status(201).send('User registered successfully');
 
   } catch (err) {
     console.error(err);
-    return res.send('Server Error');
+    return res.status(500).send('Server Error');
   }
 });
 
@@ -77,24 +102,42 @@ app.post('/create', async (req, res) => {
 app.post('/login', async function (req, res) {
   let user = await userModel.findOne({ email: req.body.email });
   if (!user) {
-    return res.send('User not found');
+    return res.status(401).send('User not found');
   }
   bcrypt.compare(req.body.password, user.password, function (err, result) {
     if(result){
-       let token = jwt.sign({email: user.email}, process.env.JWT_SECRET);
-        res.cookie('token', token);
-      res.send('Login successful');
+       const accessToken = generateAccessToken(user);
+      const refreshToken = generateRefreshToken(user);
+
+      // Set access token cookie
+        res.cookie('token', accessToken, {
+        httpOnly: true,
+        maxAge: 5 * 60 * 1000,
+        sameSite: 'strict',
+        secure: isProduction
+      });
+
+      // Set refresh token cookie
+      res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: 'strict',
+        secure: isProduction
+      });
+
+      res.status(200).send('Login successful');
     } 
     else {
-      res.send('Invalid password');
+      res.status(401).send('Invalid password');
     }
   })
 })
 
 // Logout 
 app.post("/logout", function(req, res) {
-  res.clearCookie("token", "");
-  res.redirect("/login-page.html");
+  res.clearCookie("token");
+  res.clearCookie("refreshToken");  
+  res.redirect("/login");
 })
 
 // Connect to DB and start server
