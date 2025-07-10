@@ -27,7 +27,7 @@ const petwalkSchema = new mongoose.Schema({
     },
     notes:{
         type: String,
-        required: true,
+        required: false,
     }, 
     createdAt: {
         type: Date,
