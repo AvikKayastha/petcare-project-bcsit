@@ -12,7 +12,7 @@ export const submitboarding = async (req, res) => {
       message: req.body.message,
     });
     await boarding.save();
-    res.status(201).json(boardinging);
+    res.status(201).json(boarding);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
