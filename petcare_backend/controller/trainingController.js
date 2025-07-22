@@ -1,9 +1,8 @@
-import grooming from '../models/groomingmodels.js';
-import grooming from '../models/groomingmodels.js';
+import training from '../models/trainingmodels.js';
 
-export const submitgrooming = async (req, res) => {
+export const submittraining = async (req, res) => {
   try {
-    const grooming = new grooming({
+    const training = new training({
       name: req.body.name,
       email: req.body.email,
       pet_name: req.body.pet_name,
@@ -12,8 +11,8 @@ export const submitgrooming = async (req, res) => {
       session: req.body.session,
       message: req.body.message,
     });
-    await grooming.save();
-    res.status(201).json(grooming);
+    await training.save();
+    res.status(201).json(training);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
