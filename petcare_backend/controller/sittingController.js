@@ -1,8 +1,8 @@
-import sitting from '../models/petsittingmodels.js';
+import sitting from '../models/sittingmodels.js';
 
 export const submitsitting = async (req, res) => {
   try {
-    const contact = new Contact({
+    const sitting = new sitting({
       name: req.body.name,
       email: req.body.email,
       pet_name: req.body.pet_name,
@@ -12,7 +12,7 @@ export const submitsitting = async (req, res) => {
       message: req.body.message,
     });
     await sitting.save();
-    res.status(201).json(csitting);
+    res.status(201).json(sitting);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
