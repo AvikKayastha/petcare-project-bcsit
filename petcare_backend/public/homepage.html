@@ -10,10 +10,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-    }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+  }
 
    /* Navbar Styling */
   .navbar {
@@ -56,10 +56,27 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
 
+  .btn-secondary{
+    background-color: grey !important;
+    border-color: white;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0 5px;
+  }
+  .dropdown-menu .dropdown-item {
+    background-color: white;
+    color: #333;
+    transition: background-color 0.2s;
+}
 
-   .hero-clean {
-  background: linear-gradient(to right, #e3f2fd, #ffffff);
-  border-bottom: 1px solid #dee2e6;
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+  .hero-clean {
+    background: linear-gradient(to right, #e3f2fd, #ffffff);
+    border-bottom: 1px solid #dee2e6;
   }
   
   .hero-clean h1 {
@@ -82,36 +99,35 @@
     background-color: #0b5ed7;
   }
 
+  .section-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
 
-    .section-title {
-      font-size: 3rem;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 1.5rem;
-    }
+  .highlight {
+    background-color: #ffffff;
+  }
 
-    .highlight {
-      background-color: #ffffff;
-    }
+  .service-icon {
+    font-size: 2rem;
+    color: #0d6efd;
+    margin-bottom: 10px;
+  }
 
-    .service-icon {
-      font-size: 2rem;
-      color: #0d6efd;
-      margin-bottom: 10px;
-    }
+  .testimonial {
+    background-color: #ffffff;
+    padding: 20px;
+    border-left: 4px solid #0d6efd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+  }
 
-    .testimonial {
-      background-color: #ffffff;
-      padding: 20px;
-      border-left: 4px solid #0d6efd;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      border-radius: 8px;
-    }
-
-    footer {
-      background-color: #212529;
-    }
-  </style>
+  footer {
+    background-color: #212529;
+  }
+</style>
 </head>
 <body>
 
@@ -147,6 +163,17 @@
           <a class="nav-link btn btn-outline-primary" href="/contact">
             <i class="fas fa-envelope me-1"></i>Contact
           </a>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            🙍🏻‍♂️
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> 🖥️ Dashboard</a></li>
+              <li><a class="dropdown-item" href="#"> 🚪 Logout</a></li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
