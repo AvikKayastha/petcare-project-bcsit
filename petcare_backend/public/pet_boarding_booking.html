@@ -54,6 +54,27 @@
   .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
   }
+   .btn-secondary{
+    background-color: #2c3e50 !important;
+    border-color: white;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0 5px;
+  }
+
+  .btn-secondary:hover{
+    background-color:  #3498db !important;
+  }
+  .dropdown-menu .dropdown-item {
+    background-color: white;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #3498db;
+    color: white;
+}
 
     .form-section {
       background-color: #f8f9fa;
@@ -110,6 +131,15 @@
         <li class="nav-item">
           <a class="nav-link btn btn-outline-primary" href="/contact"><i class="fas fa-envelope"></i> Contact</a>
         </li>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user text-white"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> <i class="fas fa-laptop"></i> Dashboard</a></li>
+              <li><a class="dropdown-item" href="#"> 🚪 Logout</a></li>
+            </ul>
+          </div>
       </ul>
     </div>
   </div>
