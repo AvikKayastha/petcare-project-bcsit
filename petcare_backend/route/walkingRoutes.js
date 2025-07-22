@@ -1,8 +1,8 @@
 import express from 'express';
-import { submitveterinary } from '../controller/trainingController.js';
+import { submitwalking } from '../controller/walkingController.js';
 
 const router = express.Router();
 
-router.post('/training', submittraining);
+router.post('/walking', submitwalking);
 
 export default router;
