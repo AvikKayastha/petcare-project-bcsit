@@ -48,7 +48,7 @@
         <main>
             <h1>Dashboard</h1>
             <div class="date">
-                <input type=date>
+                <input type=date id="bookingDate">
             </div>
 
             <div class="insights">
@@ -166,16 +166,9 @@
 
         <div class="right">
             <div class="top">
-                <button id="menu-btn">
-                    <i class='bx  bx-menu-wider'></i>
-                </button>
-                <div class="theme-toggler">
-                    <i class='bx  bx-sun active'></i>
-                    <i class='bx  bx-moon'></i>
-                </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Admin</b></p>
+                        <p>Hey, <b>Daniel</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
@@ -201,16 +194,16 @@
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="C:\Users\Kreepa\OneDrive\Desktop\Minor II\images\profile-picture.png">
+                            <img src="images\profile-picture.png">
                         </div>
                         <div class="message">
-                            <b>Kripa Karki </b></p>b> booked a vet appointment</p>
+                            <b>Kripa Karki </b></p> booked a vet appointment</p>
                             <small class="text-muted">10 Minutes Ago</small>
                         </div>
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="C:\Users\Kreepa\OneDrive\Desktop\Minor II\images\profile-picture.png">
+                            <img src="images\profile-picture.png">
                         </div>
                         <div class="message">
                             <b>Avik Kayastha </b></p> booked a gromming session</b></p>
@@ -221,6 +214,24 @@
             </div>
         </div>
     </div>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const dateInput = document.getElementById('bookingDate');
+
+    if (dateInput) {
+      // Get today's date in yyyy-mm-dd format
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+
+      // Set the min attribute to today
+      dateInput.min = todayStr;
+    }
+  });
+
+</script>
 </body>
 
 </html>

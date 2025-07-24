@@ -240,6 +240,7 @@ form {
       display: inline-flex; /* ensure it stays horizontal */
       flex-direction: row;
       gap: 40px; /* change this to adjust space between buttons */
+      margin-bottom: 20px;
     }
 
     .role-options label {

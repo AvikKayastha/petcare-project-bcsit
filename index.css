@@ -374,50 +374,25 @@ main .recent-orders a{
 
 /* RIGHT */
 
-.right{
+.right {
     margin-top: 1.4rem;
 }
 
-.right top{
+.right .top {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end; /* push contents to the right */
+    align-items: center;       /* vertically align items */
     gap: 2rem;
-    background: gray;
+    padding: 0.5rem 1rem;     /* optional: space inside */
 }
 
-.right .top button{
-    display: none;
-}
-
-.right .theme-toggler{
-    background: var(--color-light);
+.right .profile {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 1.6rem;
-    width: 4.2rem;
-    cursor: pointer;
-    border-radius: var(--border-radius-1);
+    align-items: center;  /* align image and text vertically */
+    gap: 1rem;            /* space between text and photo */
 }
 
-.right .theme-toggler i{
-    font-size: 1.2rem;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.right .theme-toggler i.active{
-    background: var(--color-primary);
-    color: white;
-    border-radius: var(--border-radius-1);
-}
-
-.right .top .profile{
-    display: flex;
-    gap: 2rem;
+.profile .info {
     text-align: right;
 }
 
