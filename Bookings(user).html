@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - PetCare</title>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href="Index.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>PET<span class="danger">CARE</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="User-dashboard.html" class="active">
+                    <i class='bx bx-home'></i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="Profile(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Profile</h3>
+                </a>
+                <a href="Bookings(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Bookings</h3>
+                </a>
+                <a href="Payments(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Payments</h3>
+                </a>
+                <a href="Messages(user).html">
+                    <i class='bx bx-message'></i>
+                    <h3>Messages</h3>
+                    <span class="message-count">3</span>
+                </a>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>My Bookings</h1>
+            <div class="recent-orders">
+                <h2>Upcoming & Past Bookings</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Grooming</td>
+                            <td>25 July 2025</td>
+                            <td>Confirmed</td>
+                        </tr>
+                        <tr>
+                            <td>Vet Visit</td>
+                            <td>15 July 2025</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>Boarding</td>
+                            <td>5 July 2025</td>
+                            <td>Completed</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#">View All Bookings</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
