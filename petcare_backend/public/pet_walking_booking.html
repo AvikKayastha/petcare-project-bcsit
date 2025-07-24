@@ -340,7 +340,7 @@
                 </select>
               </div>
               <div class="col-md-6">
-                <input type="date" class="form-control" name="date" required />
+                <input type="date" class="form-control" name="date" id="date" required />
               </div>
               <div class="col-md-6">
                 <input
@@ -400,6 +400,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+
+      document.addEventListener("DOMContentLoaded", function () {
+      const dateInput = document.getElementById("date");
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const minDate = `${yyyy}-${mm}-${dd}`;
+      dateInput.min = minDate;
+      });
+
       const form = document.getElementById("petwalkForm");
 
       form.addEventListener("submit", async function (e) {
