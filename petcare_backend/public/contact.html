@@ -324,7 +324,7 @@
           message: form.message.value,
         };
         try {
-          const reposne = await fetch(
+          const response = await fetch(
             "http://localhost:5000/api/contact/contact",
             {
               method: "POST",
@@ -337,7 +337,7 @@
 
           if (response.ok) {
             const toast = new bootstrap.Toast(
-              document.getElementById("liveToast")
+            document.getElementById("liveToast")
             );
             toast.show();
             form.reset();
