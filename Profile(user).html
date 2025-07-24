@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Dashboard - PetCare</title>
+    <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+    <link href="Index.css" rel="stylesheet" />
+    <style>
+        /* Profile Card */
+        .profile-card {
+            background: var(--color-white);
+            padding: var(--card-padding);
+            border-radius: var(--card-border-radius);
+            box-shadow: var(--box-shadow);
+            width: 50vw;
+            /* half the viewport width */
+            max-width: 600px;
+            min-width: 320px;
+        }
+
+        /* Static profile view */
+        #profileView p {
+            margin: 0.7rem 0;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        #profileView button {
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1.1rem;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #profileView button:hover {
+            background-color: gray;
+        }
+
+        /* Editable form styling */
+        #profileForm {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* Form group styling */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
+        }
+
+        .form-group input {
+            padding: 0.5rem 0.8rem;
+            font-size: 1rem;
+            border: 1.5px solid #ccc;
+            border-radius: var(--border-radius-1);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 5px var(--color-primary);
+        }
+
+        /* Buttons container */
+        #profileForm button {
+            width: fit-content;
+            padding: 0.7rem 1.8rem;
+            font-size: 1.1rem;
+            border-radius: var(--border-radius-1);
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #profileForm button.primary {
+            background-color: var(--color-primary);
+            color: #cacaca;
+        }
+
+        #profileForm button.primary:hover {
+            background-color: #cacaca;
+        }
+
+        #profileForm button.secondary {
+            background-color: #e0e0e0;
+            color: var(--color-dark);
+            margin-left: 1rem;
+        }
+
+        #profileForm button.secondary:hover {
+            background-color: #cacaca;
+        }
+
+        /* Button wrapper for spacing */
+        .form-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Save message styling */
+        #saveMessage {
+            color: green;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Responsive: smaller screens */
+        @media (max-width: 700px) {
+            .profile-card {
+                width: 90vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>PET<span class="danger">CARE</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="User-dashboard.html" class="active">
+                    <i class='bx bx-home'></i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="Profile(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Profile</h3>
+                </a>
+                <a href="Bookings(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Bookings</h3>
+                </a>
+                <a href="Payments(user).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Payments</h3>
+                </a>
+                <a href="Messages(user).html">
+                    <i class='bx bx-message'></i>
+                    <h3>Messages</h3>
+                    <span class="message-count">3</span>
+                </a>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END OF ASIDE -->
+
+        <main>
+            <div class="profile-card">
+                <!-- Fixed profile view -->
+                <div id="profileView">
+                    <p><b>Full Name:</b> Kripa Karki</p>
+                    <p><b>Email:</b> kripa@example.com</p>
+                    <p><b>Phone:</b> 9841234567</p>
+                    <p><b>Address:</b> Kathmandu, Nepal</p>
+                    <p><b>Number of Pets:</b> 2</p>
+                    <button id="editBtn">Edit Profile</button>
+                </div>
+
+                <!-- Hidden editable form -->
+                <form id="profileForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" value="Kripa Karki" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="kripa@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" value="9841234567" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" value="Kathmandu, Nepal" />
+                    </div>
+                    <div class="form-group">
+                        <label for="pets">Number of Pets</label>
+                        <input type="number" id="pets" value="2" min="0" />
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="primary">Save Changes</button>
+                        <button type="button" id="cancelBtn" class="secondary">Cancel</button>
+                    </div>
+                    <p id="saveMessage" style="display: none;">Profile updated!</p>
+                </form>
+            </div>
+    </div>
+    </main>
+
+    <script>
+        const editBtn = document.getElementById('editBtn');
+        const profileView = document.getElementById('profileView');
+        const profileForm = document.getElementById('profileForm');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveMessage = document.getElementById('saveMessage');
+
+        editBtn.addEventListener('click', () => {
+            profileView.style.display = 'none';
+            profileForm.style.display = 'flex';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            saveMessage.style.display = 'none';
+            profileForm.style.display = 'none';
+            profileView.style.display = 'block';
+        });
+
+        profileForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Here you would send form data to backend or save locally
+
+            // Update the fixed profile view
+            profileView.innerHTML = `
+                <p><b>Full Name:</b> ${document.getElementById('name').value}</p>
+                <p><b>Email:</b> ${document.getElementById('email').value}</p>
+                <p><b>Phone:</b> ${document.getElementById('phone').value}</p>
+                <p><b>Address:</b> ${document.getElementById('address').value}</p>
+                <p><b>Number of Pets:</b> ${document.getElementById('pets').value}</p>
+                <button id="editBtn">Edit Profile</button>
+            `;
+
+            // Show success message
+            saveMessage.style.display = 'block';
+
+            // Switch back to profile view after short delay
+            setTimeout(() => {
+                saveMessage.style.display = 'none';
+                profileForm.style.display = 'none';
+                profileView.style.display = 'block';
+
+                // Re-attach edit button event
+                document.getElementById('editBtn').addEventListener('click', () => {
+                    profileView.style.display = 'none';
+                    profileForm.style.display = 'flex';
+                });
+            }, 1200);
+        });
+    </script>
+</body>
+
+</html>
