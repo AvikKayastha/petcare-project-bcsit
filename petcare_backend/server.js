@@ -10,6 +10,8 @@ import contactRoutes from './route/contactRoutes.js';
 import petwalkRoutes from './route/petwalkRoutes.js';
 import userRoutes from './route/userRoutes.js';
 import userModel from './models/user.js'; 
+import { verifyToken } from './middleware/authMiddleware.js';
+
 
 // ES module path setup
 import { fileURLToPath } from 'url';
@@ -44,6 +46,50 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/petwalk', petwalkRoutes);
 app.use('/api', userRoutes);
 
+//protected routes
+app.get('/homepage', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+});
+app.get('/services', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'services.html'));
+});
+app.get('/contact', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'contact.html'));
+});
+app.get('/pet_boarding_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_boarding_booking.html'));
+});
+app.get('/pet_sitting_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_sitting_booking.html'));
+});
+app.get('/pet_training_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_training_booking.html'));
+});
+app.get('/pet_walking_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_walking_booking.html'));    
+});
+app.get('/pet_grooming_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_grooming_booking.html'));
+});
+app.get('/pet_veterinary_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'pet_veterinary_booking.html'));
+}); 
+app.get('/user/user_dashboard', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'user_dashboard.html'));
+});
+app.get('/user/profile', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'profile.html'));
+});
+app.get('/user/bookings', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'bookings.html'));
+});
+app.get('/user/payments', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'payments.html'));
+});
+app.get('/user/messages', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'messages.html'));
+});
+
 // Static Page Routes (Clean URL)
 app.get('/', (req, res) => res.redirect('/login'));
 app.get('/homepage', (req, res) => res.sendFile(path.join(__dirname, 'public', 'homepage.html')));
@@ -72,6 +118,6 @@ app.use((err, req, res, next) => {
 // Start Server
 connectDB().then(() => {
   app.listen(5000, () => {
-    console.log('🚀 Server running at http://localhost:5000');
+    console.log('🚀 Server running at http://localhost:5000/frontpage');
   });
 });
