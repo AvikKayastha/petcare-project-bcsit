@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caretaker Dashboard - PetCare</title>
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href="Index.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <a href="Caretaker-dashboard.html">
+            <h1>PET<span class="danger">CARE</span></h1>
+          </a>
+        </div>
+        <div class="close" id="close-btn">
+          <i class='bx bx-x'></i>
+        </div>
+      </div>
+      <div class="sidebar">
+        <a href="Caretaker-dashboard.html" class="active">
+          <i class='bx bx-dashboard'></i>
+          <h3>Dashboard</h3>
+        </a>
+        <a href="Schedule(caretaker).html">
+          <i class='bx bx-calendar'></i>
+          <h3>My Schedule</h3>
+        </a>
+        <a href="Bookings(caretaker).html">
+          <i class='bx bx-briefcase-alt'></i>
+          <h3>Assigned Bookings</h3>
+        </a>
+        <a href="Payments(caretaker).html">
+          <i class='bx bx-wallet'></i>
+          <h3>Payments</h3>
+        </a>
+        <a href="Messages(caretaker).html">
+          <i class='bx bx-message'></i>
+          <h3>Messages</h3>
+          <span class="message-count">4</span>
+        </a>
+        <a href="#">
+          <i class='bx bx-log-out'></i>
+          <h3>Logout</h3>
+        </a>
+      </div>
+    </aside>
+    <!-- END OF ASIDE -->
+
+    <main>
+      <h1>Welcome Back!</h1>
+      <div class="insights">
+        <div class="today-appointments">
+          <i class='bx bx-calendar-check'></i>
+          <div class="middle">
+            <div class="left">
+              <h3>Today's Appointments</h3>
+              <h1>3</h1>
+            </div>
+          </div>
+          <small class="text-muted">Updated now</small>
+        </div>
+
+        <div class="total-services">
+          <i class='bx bx-spa'></i>
+          <div class="middle">
+            <div class="left">
+              <h3>Services This Month</h3>
+              <h1>15</h1>
+            </div>
+          </div>
+          <small class="text-muted">Since July 1</small>
+        </div>
+
+        <div class="earnings-month">
+          <i class='bx bx-money'></i>
+          <div class="middle">
+            <div class="left">
+              <h3>Earnings This Month</h3>
+              <h1>Rs 12,000</h1>
+            </div>
+          </div>
+          <small class="text-muted">As of today</small>
+        </div>
+      </div>
+      <!-- END OF INSIGHTS -->
+
+      <div class="recent-orders">
+        <h2>Assigned Bookings</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Customer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grooming</td>
+              <td>25 July 2025</td>
+              <td>Kripa Karki</td>
+            </tr>
+            <tr>
+              <td>Vet Visit</td>
+              <td>26 July 2025</td>
+              <td>Rohit Rawal</td>
+            </tr>
+            <tr>
+              <td>Boarding</td>
+              <td>27 July 2025</td>
+              <td>Avik Kayastha</td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="#">View All Bookings</a>
+      </div>
+    </main>
+    <!-- END OF MAIN -->
+
+    <div class="right">
+      <div class="top">
+        <div class="profile">
+          <div class="info">
+            <p>Hey, <b>Alex</b></p>
+            <small class="text-muted">Caretaker</small>
+          </div>
+          <div class="profile-photo">
+            <img src="images/profile-picture.png">
+          </div>
+        </div>
+      </div>
+      <!-- END OF TOP -->
+
+      <div class="recent-updates">
+        <h2>Notifications</h2>
+        <div class="updates">
+          <div class="update">
+            <div class="profile-photo">
+              <img src="images/profile-picture.png">
+            </div>
+            <div class="message">
+              <p>New booking assigned for grooming.</p>
+              <small class="text-muted">5 Minutes Ago</small>
+            </div>
+          </div>
+          <div class="update">
+            <div class="profile-photo">
+              <img src="images/profile-picture.png">
+            </div>
+            <div class="message">
+              <p>Vet visit scheduled for tomorrow.</p>
+              <small class="text-muted">1 Hour Ago</small>
+            </div>
+          </div>
+          <div class="update">
+            <div class="profile-photo">
+              <img src="images/profile-picture.png">
+            </div>
+            <div class="message">
+              <p>Your payment for last week is processed.</p>
+              <small class="text-muted">2 Days Ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END OF RIGHT -->
+  </div>
+</body>
+
+</html>

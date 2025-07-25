@@ -7,203 +7,227 @@
     <title>Admin Dashboard</title>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link href="Index.css" rel="stylesheet">
+    <style>
+        /* Safe footer styling - no conflict with your existing CSS */
+        .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .page-wrapper .content {
+    flex: 1;
+  }
+  footer {
+    background: var(--color-white);
+    color: var(--color-dark-variant);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    box-shadow: var(--box-shadow);
+  }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <aside>
-            <div class="top">
-                <div class="logo">
-                    <a href="Admin-dashboard.html"></a>
-                    <h1>PET<span class="danger">CARE</span></h1>
+    <div class="page-wrapper">
+        <div class="container">
+            <aside>
+                <div class="top">
+                    <div class="logo">
+                        <a href="Admin-dashboard.html"></a>
+                        <h1>PET<span class="danger">CARE</span></h1>
+                    </div>
+                    <div class="close" id="close-btn">
+                        <i class='bx  bx-x'></i>
+                    </div>
                 </div>
-                <div class="close" id="close-btn">
-                    <i class='bx  bx-x'></i>
+                <div class="sidebar">
+                    <a href="Admin-dashboard.html">
+                        <i class='bx  bx-dashboard'></i>
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="customers(admin).html">
+                        <i class='bx  bx-user-square'></i>
+                        <h3>Customers</h3>
+                    </a>
+                    <a href="Bookings(admin).html">
+                        <i class='bx  bx-contact-book'></i>
+                        <h3>Bookings</h3>
+                    </a>
+                    <a href="Messages(admin).html">
+                        <i class='bx  bx-envelope'></i>
+                        <h3>Messages</h3>
+                        <span class="message-count">26</span>
+                    </a>
+                    <a href="#">
+                        <i class='bx  bx-arrow-out-right-square-half'></i>
+                        <h3>Logout</h3>
+                    </a>
                 </div>
-            </div>
-            <div class="sidebar">
-                <a href="Admin-dashboard.html">
-                    <i class='bx  bx-dashboard'></i>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="customers(admin).html">
-                    <i class='bx  bx-user-square'></i>
-                    <h3>Customers</h3>
-                </a>
-                <a href="Bookings(admin).html">
-                    <i class='bx  bx-contact-book'></i>
-                    <h3>Bookings</h3>
-                </a>
-                <a href="Messages(admin).html">
-                    <i class='bx  bx-envelope'></i>
-                    <h3>Messages</h3>
-                    <span class="message-count">26</span>
-                </a>
-                <a href="#">
-                    <i class='bx  bx-arrow-out-right-square-half'></i>
-                    <h3>Logout</h3>
-                </a>
-            </div>
-        </aside>
-        <!-- END OF ASIDE -->
-        <main>
-            <h1>Dashboard</h1>
-            <div class="insights">
-                <div class="earnings">
-                    <i class='bx  bx-bar-chart-big'></i>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Earnings</h3>
-                            <h1>Rs 4,000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
+            </aside>
+            <!-- END OF ASIDE -->
+            <main>
+                <h1>Dashboard</h1>
+                <div class="insights">
+                    <div class="earnings">
+                        <i class='bx  bx-bar-chart-big'></i>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Earnings</h3>
+                                <h1>Rs 4,000</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx='38' cy='38' r='36'></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>81%</p>
+                                </div>
                             </div>
                         </div>
+                        <small class="text-muted">Last 24 hours</small>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
-                </div>
 
-                <!-- END OF EARNINGS -->
+                    <!-- END OF EARNINGS -->
 
-                <div class="expenses">
-                    <i class='bx  bx-currency-notes'></i>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Expenses</h3>
-                            <h1>Rs 4,000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>6%</p>
+                    <div class="expenses">
+                        <i class='bx  bx-currency-notes'></i>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Expenses</h3>
+                                <h1>Rs 4,000</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx='38' cy='38' r='36'></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>6%</p>
+                                </div>
                             </div>
                         </div>
+                        <small class="text-muted">Last 24 hours</small>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
-                </div>
 
-                <!-- END OF EXPENSES -->
+                    <!-- END OF EXPENSES -->
 
-                <div class="income">
-                    <i class='bx  bx-wallet-alt'></i>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Income</h3>
-                            <h1>Rs 4,000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>44%</p>
+                    <div class="income">
+                        <i class='bx  bx-wallet-alt'></i>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Income</h3>
+                                <h1>Rs 4,000</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx='38' cy='38' r='36'></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>44%</p>
+                                </div>
                             </div>
                         </div>
+                        <small class="text-muted">Last 24 hours</small>
                     </div>
-                    <small class="text-muted">Last 24 hours</small>
+                    <!-- END OF INCOME -->
                 </div>
-                <!-- END OF INCOME -->
-            </div>
-            <!-- END OF INSIGHTS -->
-            <div class="recent-orders">
-                <h2> Recent Bookings</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Customer Number</th>
-                            <th>Payment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Rohit Rawal</td>
-                            <td>9841232356</td>
-                            <td>Due</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Kripa Karki</td>
-                            <td>9842389756</td>
-                            <td>Paid</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Avik Kayastha</td>
-                            <td>9749638652</td>
-                            <td>Due</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Keyush Ghimire</td>
-                            <td>9741630152</td>
-                            <td>Paid</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="#"> Show All</a>
-            </div>
-        </main>
-
-        <!-- END OF MAIN -->
-
-        <div class="right">
-            <div class="top">
-                <div class="profile">
-                    <div class="info">
-                        <h3>Hey, <b>Daniel</b></h3>
-                        <small class="text-muted">Admin</small>
-                    </div>
-                    <div class="profile-photo">
-                        <img src="C:\Users\Kreepa\OneDrive\Desktop\Minor II\images\profile-picture.png">
-                    </div>
+                <!-- END OF INSIGHTS -->
+                <div class="recent-orders">
+                    <h2> Recent Bookings</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Customer Number</th>
+                                <th>Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rohit Rawal</td>
+                                <td>9841232356</td>
+                                <td>Due</td>
+                                <td class="primary">Details</td>
+                            </tr>
+                            <tr>
+                                <td>Kripa Karki</td>
+                                <td>9842389756</td>
+                                <td>Paid</td>
+                                <td class="primary">Details</td>
+                            </tr>
+                            <tr>
+                                <td>Avik Kayastha</td>
+                                <td>9749638652</td>
+                                <td>Due</td>
+                                <td class="primary">Details</td>
+                            </tr>
+                            <tr>
+                                <td>Keyush Ghimire</td>
+                                <td>9741630152</td>
+                                <td>Paid</td>
+                                <td class="primary">Details</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#"> Show All</a>
                 </div>
-            </div>
+            </main>
 
-            <!-- END OF TOP -->
+            <!-- END OF MAIN -->
 
-            <div class="recent-updates">
-                <h2>Recent Updates</h2>
-                <div class="updates">
-                    <div class="update">
+            <div class="right">
+                <div class="top">
+                    <div class="profile">
+                        <div class="info">
+                            <h3>Hey, <b>Daniel</b></h3>
+                            <small class="text-muted">Admin</small>
+                        </div>
                         <div class="profile-photo">
                             <img src="C:\Users\Kreepa\OneDrive\Desktop\Minor II\images\profile-picture.png">
                         </div>
-                        <div class="message">
-                            <b>Samira Ban </b>
-                            <p> booked a gromming session</p>
-                            <small class="text-muted">2 Minutes Ago</small>
-                        </div>
                     </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="images\profile-picture.png">
+                </div>
+
+                <!-- END OF TOP -->
+
+                <div class="recent-updates">
+                    <h2>Recent Updates</h2>
+                    <div class="updates">
+                        <div class="update">
+                            <div class="profile-photo">
+                                <img src="C:\Users\Kreepa\OneDrive\Desktop\Minor II\images\profile-picture.png">
+                            </div>
+                            <div class="message">
+                                <b>Samira Ban </b>
+                                <p> booked a gromming session</p>
+                                <small class="text-muted">2 Minutes Ago</small>
+                            </div>
                         </div>
-                        <div class="message">
-                            <b>Kripa Karki </b></p> booked a vet appointment</p>
-                            <small class="text-muted">10 Minutes Ago</small>
+                        <div class="update">
+                            <div class="profile-photo">
+                                <img src="images\profile-picture.png">
+                            </div>
+                            <div class="message">
+                                <b>Kripa Karki </b></p> booked a vet appointment</p>
+                                <small class="text-muted">10 Minutes Ago</small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="update">
-                        <div class="profile-photo">
-                            <img src="images\profile-picture.png">
-                        </div>
-                        <div class="message">
-                            <b>Avik Kayastha </b></p> booked a gromming session</b></p>
-                            <small class="text-muted">21 Minutes Ago</small>
+                        <div class="update">
+                            <div class="profile-photo">
+                                <img src="images\profile-picture.png">
+                            </div>
+                            <div class="message">
+                                <b>Avik Kayastha </b></p> booked a gromming session</b></p>
+                                <small class="text-muted">21 Minutes Ago</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <p>&copy; 2025 Petcare. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
