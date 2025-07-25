@@ -5,6 +5,12 @@ import jwt from 'jsonwebtoken';
 export const createUser = async (req, res) => {
   try {
     let { name, email, password, cpassword, role } = req.body;
+
+    // Check if user already exists
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json('User already exists');
+    }
     
     // validate password/ compare with confirm password
     if (password !== cpassword) {
@@ -33,13 +39,14 @@ export const createUser = async (req, res) => {
     });
     
     // send response
-    res.send('User created successfully');
-  } catch (err) {
-    console.error(err);
-    return res.send('Server Error');
+    return res.status(201).send('User created successfully');
+  } catch (error) {
+    console.error("Error saving user:",err);
+    return res.status(500).send('Server Error');
   }
 };
 
+// Login Route
 export const loginUser = async (req, res) => {
   try {
     let user = await userModel.findOne({ email: req.body.email });
@@ -54,7 +61,7 @@ export const loginUser = async (req, res) => {
       if (result) {
         let token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
         res.cookie('token', token);
-        res.send('Login successful');
+        res.send("/homepage");
       } else {
         res.send('Invalid password');
       }
