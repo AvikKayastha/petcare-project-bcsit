@@ -15,7 +15,7 @@
             <div class="top">
                 <div class="logo">
                     <a href="Admin-dashboard.html"></a>
-                    <h2>PET<span class="danger">CARE</span></h2>
+                    <h1>PET<span class="danger">CARE</span></h1>
                 </div>
                 <div class="close" id="close-btn">
                     <i class='bx  bx-x'></i>
@@ -130,27 +130,21 @@
                             <td class="primary">Details</td>
                         </tr>
                         <tr>
-                            <td>Rohit Rawal</td>
-                            <td>9841232356</td>
+                            <td>Kripa Karki</td>
+                            <td>9842389756</td>
+                            <td>Paid</td>
+                            <td class="primary">Details</td>
+                        </tr>
+                        <tr>
+                            <td>Avik Kayastha</td>
+                            <td>9749638652</td>
                             <td>Due</td>
                             <td class="primary">Details</td>
                         </tr>
                         <tr>
-                            <td>Rohit Rawal</td>
-                            <td>9841232356</td>
-                            <td>Due</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Rohit Rawal</td>
-                            <td>9841232356</td>
-                            <td>Due</td>
-                            <td class="primary">Details</td>
-                        </tr>
-                        <tr>
-                            <td>Rohit Rawal</td>
-                            <td>9841232356</td>
-                            <td>Due</td>
+                            <td>Keyush Ghimire</td>
+                            <td>9741630152</td>
+                            <td>Paid</td>
                             <td class="primary">Details</td>
                         </tr>
                     </tbody>
@@ -165,7 +159,7 @@
             <div class="top">
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Daniel</b></p>
+                        <h3>Hey, <b>Daniel</b></h3>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
@@ -211,24 +205,24 @@
             </div>
         </div>
     </div>
-<script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const dateInput = document.getElementById('bookingDate');
 
-    if (dateInput) {
-      // Get today's date in yyyy-mm-dd format
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-      const dd = String(today.getDate()).padStart(2, '0');
-      const todayStr = `${yyyy}-${mm}-${dd}`;
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const dateInput = document.getElementById('bookingDate');
 
-      // Set the min attribute to today
-      dateInput.min = todayStr;
-    }
-  });
+            if (dateInput) {
+                // Get today's date in yyyy-mm-dd format
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+                const dd = String(today.getDate()).padStart(2, '0');
+                const todayStr = `${yyyy}-${mm}-${dd}`;
 
-</script>
+                // Set the min attribute to today
+                dateInput.min = todayStr;
+            }
+        });
+    </script>
 </body>
 
 </html>
