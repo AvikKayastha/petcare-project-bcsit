@@ -74,8 +74,8 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
   try {
-    res.clearCookie("token", "");
-    res.redirect("/login-page.html");
+    res.clearCookie("token",);
+    res.redirect("/login-page");
   } catch (error) {
     console.error("Error logging out user:", error);
     res.send('Server error');

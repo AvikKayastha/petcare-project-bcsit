@@ -11,6 +11,7 @@ import connectDB from './config/db.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
+import { verify } from 'crypto';
 dotenv.config(); 
 const __filename = fileURLToPath(import.meta.url);// __filename gives current file path
 const __dirname = dirname(__filename); // __dirname gives current folder path
@@ -35,10 +36,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
-// Serve login page without .html in URL
-app.get('/login', (req, res) => {
+// protected routes
+app.get('/login', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login-page.html'));
 });
+
+app.get('/homepage', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+});
+
+//Static Page Routes (Clean URL)
+app.get('/', (req, res) => res.redirect('/login'));
+app.get('/homepage', (req, res) => res.sendFile(path.join(__dirname, 'public', 'homepage.html')));
 
 // Use user routes under /api path
 app.use('/api', userRoutes);
@@ -143,6 +152,6 @@ app.post("/logout", function(req, res) {
 // Connect to DB and start server
 connectDB().then(() => {
   app.listen(5000, () => {
-    console.log('🚀 Server running at http://localhost:5000');
+    console.log('🚀 Server running at http://localhost:5000/frontpage');
   });
 });
