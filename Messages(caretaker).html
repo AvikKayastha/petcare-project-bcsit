@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caretaker Dashboard - PetCare</title>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href="Index.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <a href="Caretaker-dashboard.html">
+                        <h1>PET<span class="danger">CARE</span></h1>
+                    </a>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="Caretaker-dashboard.html" class="active">
+                    <i class='bx bx-dashboard'></i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="Schedule(caretaker).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Schedule</h3>
+                </a>
+                <a href="Bookings(caretaker).html">
+                    <i class='bx bx-briefcase-alt'></i>
+                    <h3>Assigned Bookings</h3>
+                </a>
+                <a href="Payments(caretaker).html">
+                    <i class='bx bx-wallet'></i>
+                    <h3>Payments</h3>
+                </a>
+                <a href="Messages(caretaker).html">
+                    <i class='bx bx-message'></i>
+                    <h3>Messages</h3>
+                    <span class="message-count">4</span>
+                </a>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END OF ASIDE -->
+
+        <main>
+            <h1>Messages</h1>
+            <div class="recent-updates">
+                <h2>Inbox</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/profile-picture.png">
+                        </div>
+                        <div class="message">
+                            <p><b>Admin:</b> Please confirm your availability for this weekend.</p>
+                            <small class="text-muted">2 Minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/profile-picture.png">
+                        </div>
+                        <div class="message">
+                            <p><b>Kripa Karki:</b> Thank you for taking care of my pet last week!</p>
+                            <small class="text-muted">10 Minutes Ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="images/profile-picture.png">
+                        </div>
+                        <div class="message">
+                            <p><b>System:</b> Payment of Rs 4,000 processed successfully.</p>
+                            <small class="text-muted">1 Hour Ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
