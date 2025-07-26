@@ -89,6 +89,21 @@ res.sendFile(path.join(__dirname, 'public', 'user', 'user_payment.html'));
 app.get('/user/user_message', verifyToken, (req, res) => {
 res.sendFile(path.join(__dirname, 'public', 'user', 'user_message.html'));
 });
+app.get('/caretaker/caretaker_dashboard', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_dashboard.html'));
+});
+app.get('/caretaker/caretaker_schedule', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_schedule.html'));
+});
+app.get('/caretaker/caretaker_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_booking.html'));
+});
+app.get('/caretaker/caretaker_payment', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_payment.html'));
+});
+app.get('/caretaker/caretaker_message', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_message.html'));
+});
 
 // Static Page Routes (Clean URL)
 app.get('/', (req, res) => res.redirect('/login'));
@@ -108,6 +123,11 @@ app.get('/user_profile', (req, res) => res.sendFile(path.join(__dirname, 'public
 app.get('/user_booking', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_booking.html')));
 app.get('/user_payment', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_payment.html')));
 app.get('/user_message', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_message.html')));
+app.get('/caretaker_dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_dashboard.html')));
+app.get('/caretaker_schedule', (req, res) => res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_schedule.html')));
+app.get('/caretaker_booking', (req, res) => res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_booking.html')));
+app.get('/caretaker_payment', (req, res) => res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_payment.html'))); 
+app.get('/caretaker_message', (req, res) => res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_message.html')));
 
 // Error Handler
 app.use((err, req, res, next) => {

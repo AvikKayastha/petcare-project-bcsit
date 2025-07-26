@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caretaker Dashboard - PetCare</title>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href="index.css" rel="stylesheet">
+    <style>
+        main .payment h2 {
+            margin-bottom: 0.8rem;
+        }
+
+        main .payment table {
+            background: var(--color-white);
+            width: 100%;
+            border-radius: var(--card-border-radius);
+            padding: var(--card-padding);
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: all 300ms ease;
+        }
+
+
+        main .payment table:hover {
+            box-shadow: none;
+        }
+
+        main table tbody td {
+            height: 2.8rem;
+            border-bottom: 1px solid var(--color-light);
+            color: var(--color-dark-variant);
+        }
+
+        main table tbody tr:last-child td {
+            border: none;
+        }
+
+        main .payment a {
+            text-align: center;
+            display: block;
+            margin: 1rem auto;
+            color: var(--color-primary);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <a href="Caretaker-dashboard.html">
+                        <h1>PET<span class="danger">CARE</span></h1>
+                    </a>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="Caretaker-dashboard.html">
+                    <i class='bx bx-dashboard'></i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="Schedule(caretaker).html">
+                    <i class='bx bx-calendar'></i>
+                    <h3>My Schedule</h3>
+                </a>
+                <a href="Bookings(caretaker).html">
+                    <i class='bx bx-briefcase-alt'></i>
+                    <h3>Assigned Bookings</h3>
+                </a>
+                <a href="Payments(caretaker).html" class="active">
+                    <i class='bx bx-wallet'></i>
+                    <h3>Payments</h3>
+                </a>
+                <a href="Messages(caretaker).html">
+                    <i class='bx bx-message'></i>
+                    <h3>Messages</h3>
+                    <span class="message-count">4</span>
+                </a>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END OF ASIDE -->
+
+        <main>
+            <h1>My Payments</h1>
+            <div class="payment">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>16 July 2025</td>
+                            <td>Rs 4,000</td>
+                            <td>Due</td>
+                        </tr>
+                        <tr>
+                            <td>16 July 2025</td>
+                            <td>Rs 3,500</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>15 July 2025</td>
+                            <td>Rs 4,200</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>1 July 2025</td>
+                            <td>Rs 2,800</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>20 June 2025</td>
+                            <td>Rs 3,000</td>
+                            <td>Due</td>
+                        </tr>
+                        <tr>
+                            <td>5 June 2025</td>
+                            <td>Rs 4,500</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>25 May 2025</td>
+                            <td>Rs 3,200</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>10 May 2025</td>
+                            <td>Rs 2,900</td>
+                            <td>Due</td>
+                        </tr>
+                        <tr>
+                            <td>30 April 2025</td>
+                            <td>Rs 3,800</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>15 April 2025</td>
+                            <td>Rs 4,100</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>1 April 2025</td>
+                            <td>Rs 2,750</td>
+                            <td>Due</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
