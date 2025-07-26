@@ -176,7 +176,7 @@
             <i class="fas fa-user text-white"></i>
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#"> <i class="fas fa-laptop"></i> Dashboard</a></li>
+              <li><a id="dashboardLink" class="dropdown-item" href="#"><i class="fas fa-laptop"></i> Dashboard</a></li>
               <li><a class="dropdown-item" href="#" id="logoutLink"> <i class="fas fa-sign-out"></i> Logout</a></li>
             </ul>
           </div>
@@ -471,7 +471,26 @@
       alert("An error occurred during logout.");
     }
   });
+    window.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const res = await fetch("/api/userinfo");
+      const user = await res.json();
 
-    </script>
-  </body>
+      if (res.ok) {
+        const dashboardLink = document.getElementById("dashboardLink");
+
+        if (user.role === "owner") {
+          dashboardLink.href = "user/user_dashboard";
+        } else if (user.role === "caretaker") {
+          dashboardLink.href = "user/caretaker_dashboard";
+        }
+      } else {
+        console.log("Not logged in");
+      }
+    } catch (err) {
+      console.error("Error loading user info", err);
+    }
+  });
+</script>
+</body>
 </html>

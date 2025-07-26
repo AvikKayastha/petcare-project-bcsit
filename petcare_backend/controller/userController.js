@@ -46,21 +46,30 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const loginUser = async (req, res) => {
+  export const loginUser = async (req, res) => {
   try {
     let user = await userModel.findOne({ email: req.body.email });
     if (!user) {
       return res.send('User not found');
     }
-    
+   
     bcrypt.compare(req.body.password, user.password, function (err, result) {
       if (err) {
         return res.send('Server error');
       }
       if (result) {
-        let token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+        let token = jwt.sign({ email: user.email, role: user.role }, process.env.JWT_SECRET);
         res.cookie('token', token);
-        res.redirect("/homepage");
+      
+        if (user.role === 'owner') {
+          return res.redirect("/homepage");
+        } else if (user.role === 'caretaker') {
+          return res.redirect("/homepage");
+        } else if (user.role === 'admin') {
+          return res.redirect("/admin_dashboard");
+        } else {
+          return res.send("Unknown role");
+        }
       } else {
         res.send('Invalid password');
       }
@@ -68,6 +77,14 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     console.error('Login error:', error);
     res.send('Server error');
+  }
+};
+
+export const getUserInfo = async (req, res) => {
+  try {
+    res.json({ email: req.user.email, role: req.user.role });
+  } catch (err) {
+    res.status(500).send("Failed to get user info");
   }
 };
 

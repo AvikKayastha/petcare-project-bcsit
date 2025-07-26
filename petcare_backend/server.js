@@ -77,17 +77,17 @@ res.sendFile(path.join(__dirname, 'public', 'pet_veterinary_booking.html'));
 app.get('/user/user_dashboard', verifyToken, (req, res) => {
 res.sendFile(path.join(__dirname, 'public', 'user', 'user_dashboard.html'));
 });
-app.get('/user/profile', verifyToken, (req, res) => {
-res.sendFile(path.join(__dirname, 'public', 'user', 'profile.html'));
+app.get('/user/user_profile', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'user_profile.html'));
 });
-app.get('/user/bookings', verifyToken, (req, res) => {
-res.sendFile(path.join(__dirname, 'public', 'user', 'bookings.html'));
+app.get('/user/user_booking', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'user_booking.html'));
 });
-app.get('/user/payments', verifyToken, (req, res) => {
-res.sendFile(path.join(__dirname, 'public', 'user', 'payments.html'));
+app.get('/user/user_payment', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'user_payment.html'));
 });
-app.get('/user/messages', verifyToken, (req, res) => {
-res.sendFile(path.join(__dirname, 'public', 'user', 'messages.html'));
+app.get('/user/user_message', verifyToken, (req, res) => {
+res.sendFile(path.join(__dirname, 'public', 'user', 'user_message.html'));
 });
 
 // Static Page Routes (Clean URL)
@@ -103,11 +103,11 @@ app.get('/pet_walking_booking', (req, res) => res.sendFile(path.join(__dirname, 
 app.get('/pet_grooming_booking', (req, res) => res.sendFile(path.join(__dirname, 'public', 'pet_grooming_booking.html')));
 app.get('/pet_veterinary_booking', (req, res) => res.sendFile(path.join(__dirname, 'public', 'pet_veterinary_booking.html')));
 app.get('/login_page', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login_page.html')));
-app.get('/user/user_dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_dashboard.html')));
-app.get('/user/profile', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'profile.html')));
-app.get('/user/bookings', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'bookings.html')));
-app.get('/user/payments', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'payments.html')));
-app.get('/user/messages', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'messages.html')));
+app.get('/user_dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_dashboard.html')));
+app.get('/user_profile', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_profile.html')));
+app.get('/user_booking', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_booking.html')));
+app.get('/user_payment', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_payment.html')));
+app.get('/user_message', (req, res) => res.sendFile(path.join(__dirname, 'public', 'user', 'user_message.html')));
 
 // Error Handler
 app.use((err, req, res, next) => {
