@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caretaker Dashboard - PetCare</title>
+  <link rel="shortcut icon" href="/photos/pet-care_logo_1.png" type="image/x-icon">
   <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
   <link href="index.css" rel="stylesheet">
 </head>
@@ -14,7 +15,7 @@
     <aside>
       <div class="top">
         <div class="logo">
-          <a href="Caretaker-dashboard.html">
+          <a href="/homepage">
             <h1>PET<span class="danger">CARE</span></h1>
           </a>
         </div>
@@ -23,30 +24,30 @@
         </div>
       </div>
       <div class="sidebar">
-        <a href="Caretaker-dashboard.html" class="active">
+        <a href="/caretaker/caretaker_dashboard" class="active">
           <i class='bx bx-dashboard'></i>
           <h3>Dashboard</h3>
         </a>
-        <a href="Schedule(caretaker).html">
+        <a href="/caretaker/caretaker_schedule">
           <i class='bx bx-calendar'></i>
           <h3>My Schedule</h3>
         </a>
-        <a href="Bookings(caretaker).html">
+        <a href="/caretaker/caretaker_booking">
           <i class='bx bx-briefcase-alt'></i>
           <h3>Assigned Bookings</h3>
         </a>
-        <a href="Payments(caretaker).html">
+        <a href="/caretaker/caretaker_payment">
           <i class='bx bx-wallet'></i>
           <h3>Payments</h3>
         </a>
-        <a href="Messages(caretaker).html">
+        <a href="/caretaker/caretaker_message">
           <i class='bx bx-message'></i>
           <h3>Messages</h3>
           <span class="message-count">4</span>
         </a>
         <a href="#">
           <i class='bx bx-log-out'></i>
-          <h3>Logout</h3>
+          <h3></h3>
         </a>
       </div>
     </aside>
@@ -78,7 +79,7 @@
         </div>
 
         <div class="earnings-month">
-          <i class='bx bx-money'></i>
+          <i class='bx bx-currency-notes'></i>
           <div class="middle">
             <div class="left">
               <h3>Earnings This Month</h3>
@@ -89,7 +90,7 @@
         </div>
       </div>
       <!-- END OF INSIGHTS -->
-
+      <br>
       <div class="recent-orders">
         <h2>Assigned Bookings</h2>
         <table>
@@ -102,29 +103,34 @@
           </thead>
           <tbody>
             <tr>
-              <td>Grooming</td>
+              <td>Pet Grooming</td>
               <td>25 July 2025</td>
               <td>Kripa Karki</td>
             </tr>
             <tr>
-              <td>Vet Visit</td>
+              <td>Pet Veterinary</td>
               <td>26 July 2025</td>
               <td>Rohit Rawal</td>
             </tr>
             <tr>
-              <td>Boarding</td>
+              <td>Pet Boarding</td>
               <td>27 July 2025</td>
               <td>Avik Kayastha</td>
             </tr>
             <tr>
-              <td>Daycare</td>
+              <td>Pet Sitting</td>
               <td>27 July 2025</td>
               <td>Divya Gautam</td>
             </tr>
             <tr>
-              <td>Boarding</td>
+              <td>Pet Boarding</td>
               <td>28 July 2025</td>
               <td>Sohan Nath</td>
+            </tr>
+            <tr>
+              <td>Pet Walking</td>
+              <td>28 July 2025</td>
+              <td>Bikram Bohora</td>
             </tr>
           </tbody>
         </table>
@@ -137,11 +143,11 @@
       <div class="top">
         <div class="profile">
           <div class="info">
-            <p>Hey, <b>Alex</b></p>
+            <p>Hey, <b>Ram</b></p>
             <small class="text-muted">Caretaker</small>
           </div>
           <div class="profile-photo">
-            <img src="images/profile-picture.png">
+            <img src="../images/profile-picture.png">
           </div>
         </div>
       </div>
@@ -150,33 +156,53 @@
       <div class="recent-updates">
         <h2>Notifications</h2>
         <div class="updates">
+           <div class="update">
+           <div class="profile-photo">
+            <img src="../images/profile-picture.png">
+         </div>
+           <div class="message">
+            <p>You have a new client request pending approval.</p>
+            <small class="text-muted">1 Minutes Ago</small>
+          </div>
+          </div>
           <div class="update">
             <div class="profile-photo">
-              <img src="images/profile-picture.png">
+              <img src="../images/profile-picture.png">
             </div>
             <div class="message">
-              <p>New booking assigned for grooming.</p>
+              <p>New booking assigned for Pet Grooming.</p>
               <small class="text-muted">5 Minutes Ago</small>
             </div>
           </div>
           <div class="update">
+          <div class="profile-photo">
+          <img src="../images/profile-picture.png">
+        </div>
+          <div class="message">
+         <p>Your profile was viewed 12 times today.</p>
+         <small class="text-muted">10 Minutes Ago</small>
+        </div>
+        </div>
+          <div class="update">
             <div class="profile-photo">
-              <img src="images/profile-picture.png">
+              <img src="../images/profile-picture.png">
             </div>
             <div class="message">
-              <p>Vet visit scheduled for tomorrow.</p>
+              <p>Pet Veterinary visit scheduled for tomorrow.</p>
               <small class="text-muted">1 Hour Ago</small>
             </div>
           </div>
           <div class="update">
             <div class="profile-photo">
-              <img src="images/profile-picture.png">
+              <img src="../images/profile-picture.png">
             </div>
             <div class="message">
               <p>Your payment for last week is processed.</p>
               <small class="text-muted">2 Days Ago</small>
             </div>
           </div>
+          
+
         </div>
       </div>
     </div>
