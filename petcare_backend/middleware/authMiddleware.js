@@ -11,7 +11,7 @@ export function verifyToken(req, res, next) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     res.set('Cache-Control', 'no-store');
     req.user = decoded;
-    next(); // user is valid, continue to next middleware/route
+    next();
   } catch (err) {
     res.clearCookie("token");
     return res.redirect('/login_page');

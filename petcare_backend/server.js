@@ -51,8 +51,21 @@ app.get('/frontpage', verifyToken, (req, res) => {
 });
 
 app.get('/adminDasboard', verifyToken, (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'adminDashboard.html'));
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'Admin-dashboard.html'));
 });
+
+app.get('/booking-admin', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'Bookings(admin).html'));
+});
+
+app.get('/customer-admin', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'customers(admin).html'));
+});
+
+app.get('/message-admin', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin', 'Messages(admin).html'));
+});
+
 
 //Static Page Routes (Clean URL)
 app.get('/', (req, res) => res.redirect('/login'));
@@ -117,39 +130,45 @@ app.post('/create', async (req, res) => {
 });
 
 // Login Route
-app.post('/login', async function (req, res) {
-  let user = await userModel.findOne({ email: req.body.email });
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await userModel.findOne({ email });
   if (!user) {
     return res.status(401).send('User not found');
   }
-  bcrypt.compare(req.body.password, user.password, function (err, result) {
-    if(result){
-       const accessToken = generateAccessToken(user);
-      const refreshToken = generateRefreshToken(user);
 
-      // Set access token cookie
-        res.cookie('token', accessToken, {
-        httpOnly: true,
-        maxAge: 5 * 60 * 1000,
-        sameSite: 'strict',
-        secure: isProduction
-      });
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(401).send('Invalid password');
+  }
 
-      // Set refresh token cookie
-      res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        sameSite: 'strict',
-        secure: isProduction
-      });
+  // Generate tokens
+  const accessToken = generateAccessToken(user);
+  const refreshToken = generateRefreshToken(user);
 
-      res.status(200).send('Login successful');
-    } 
-    else {
-      res.status(401).send('Invalid password');
-    }
-  })
-})
+  res.cookie('token', accessToken, {
+    httpOnly: true,
+    maxAge: 5 * 60 * 1000,
+    sameSite: 'strict',
+    secure: isProduction
+  });
+
+  res.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    sameSite: 'strict',
+    secure: isProduction
+  });
+
+  // Redirect based on role
+  if (user.role === 'admin') {
+    return res.redirect('/adminDasboard');
+  } else {
+    return res.redirect('/homepage');
+  } 
+});
+
 
 // Logout 
 app.post("/logout", function(req, res) {
