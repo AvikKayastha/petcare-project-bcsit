@@ -1,8 +1,10 @@
 import express from 'express';
-import { submitPetwalk } from '../controller/petwalkController.js';
+import { initiateEsewaPayment } from '../controller/petwalkController.js';
+import { verifyToken, allowUserOnly } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/petwalk', submitPetwalk);
+// Add authentication middleware to protect the payment route
+router.post('/initiate-payment', verifyToken, allowUserOnly, initiateEsewaPayment);
 
 export default router;

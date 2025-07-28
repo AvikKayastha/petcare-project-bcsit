@@ -400,97 +400,134 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Set minimum date to today
+    const dateInput = document.getElementById("date");
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
 
-      document.addEventListener("DOMContentLoaded", function () {
-      const dateInput = document.getElementById("date");
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const minDate = `${yyyy}-${mm}-${dd}`;
-      dateInput.min = minDate;
-      });
-
-      const form = document.getElementById("petwalkForm");
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        const formData = {
-          name: form.name.value,
-          email: form.email.value,
-          petName: form.petName.value,
-          petType: form.petType.value,
-          date: form.date.value,
-          hours: form.hours.value,
-          notes: form.notes.value,
-        };
-
-        try {
-          const response = await fetch(
-            "http://localhost:5000/api/petwalk/petwalk",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            }
-          );
-
-          if (response.ok) {
-            const toast = new bootstrap.Toast(
-              document.getElementById("liveToast")
-            );
-            toast.show();
-            form.reset();
-          } else {
-            alert("Something went wrong");
-          }
-        } catch (error) {
-          alert("Something went wrong");
-          console.error(error);
-        }
-      });
-
-    document.getElementById('logoutLink').addEventListener('click', async function (e) {
-    e.preventDefault(); // Prevent the default anchor behavior
-
-    try {
-      const res = await fetch('/api/logout', {
-      method: 'POST'
-    });
-
-      if (res.redirected) {
-        window.location.href = res.url; // Redirect to login page
-      } else {
-        alert("Logout failed");
-      }
-    } catch (error) {
-      console.error('Logout error:', error);
-      alert("An error occurred during logout.");
+    // Show toast if success=true in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("success") === "true") {
+      const toast = new bootstrap.Toast(document.getElementById("liveToast"));
+      toast.show();
     }
-  });
-    window.addEventListener("DOMContentLoaded", async () => {
-    try {
-      const res = await fetch("/api/userinfo");
-      const user = await res.json();
 
-      if (res.ok) {
+    // Load user info to set dashboard link
+    fetch("/api/userinfo")
+      .then((res) => res.json())
+      .then((user) => {
         const dashboardLink = document.getElementById("dashboardLink");
-
         if (user.role === "owner") {
           dashboardLink.href = "user/user_dashboard";
         } else if (user.role === "caretaker") {
           dashboardLink.href = "caretaker/caretaker_dashboard";
         }
+      })
+      .catch((err) => console.error("Error loading user info", err));
+  });
+
+  // Logout Handler
+  document.getElementById("logoutLink").addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/logout", { method: "POST" });
+      if (res.redirected) {
+        window.location.href = res.url;
       } else {
-        console.log("Not logged in");
+        alert("Logout failed");
       }
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("An error occurred during logout.");
+    }
+  });
+
+  // Function to create and submit eSewa form
+  function submitEsewaForm(paymentUrl, payload) {
+    // Create a form element
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = paymentUrl;
+    form.style.display = 'none';
+
+    // Add all payload fields as hidden inputs
+    Object.keys(payload).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = payload[key];
+      form.appendChild(input);
+    });
+
+    // Add form to body and submit
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+  // Form Submission and Payment Redirect
+  const form = document.getElementById("petwalkForm");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      petName: form.petName.value,
+      petType: form.petType.value,
+      date: form.date.value,
+      hours: form.hours.value,
+      notes: form.notes.value,
+    };
+
+    console.log("Submitting form data:", formData); // Debug log
+
+    try {
+      const res = await fetch("/api/petwalk/initiate-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Response status:", res.status); // Debug log
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || `HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log("Payment response:", data); // Debug log
+
+      if (data.success && data.paymentUrl && data.payload) {
+        // Submit the eSewa form
+        submitEsewaForm(data.paymentUrl, data.payload);
+      } else {
+        throw new Error("Invalid payment response");
+      }
+
     } catch (err) {
-      console.error("Error loading user info", err);
+      console.error("Error submitting form:", err);
+      alert(`Something went wrong during booking: ${err.message}`);
+      
+      // Reset button state
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     }
   });
 </script>
+
 </body>
 </html>
