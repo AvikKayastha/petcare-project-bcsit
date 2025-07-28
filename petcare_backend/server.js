@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
-// protected routes
+// static routes
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login-page.html'));
 });
@@ -48,6 +48,10 @@ app.get('/homepage', verifyToken, (req, res) => {
 
 app.get('/frontpage', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'frontpage.html'));
+});
+
+app.get('/adminDasboard', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'adminDashboard.html'));
 });
 
 //Static Page Routes (Clean URL)
