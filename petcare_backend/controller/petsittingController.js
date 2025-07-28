@@ -1,18 +1,21 @@
 import Petsitting from '../models/petsitting.js';
 
 export const submitPetsitting = async (req, res) => {
+  console.log('Request Body:', req.body); // Debug
+
   try {
     const newSitting = new Petsitting({
       name: req.body.name,
       email: req.body.email,
-      PetName: req.body.petName,
-      PetType: req.body.petType,
+      petName: req.body.petName,
+      petType: req.body.petType,
       date: req.body.date,
       hours: req.body.hours,
       notes: req.body.notes,
     });
 
-    await newSitting.save();
+    const saved = await newSitting.save();
+    console.log('Saved document:', saved); // Debug
     return res.status(201).json({ message: "Petsitting saved successfully" });
   } catch (error) {
     console.error("Error saving petsitting:", error);
