@@ -6,12 +6,13 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import userRoutes from './route/userRoutes.js'; // Import user routes
 import connectDB from './config/db.js';
+import { verifyToken } from './middleware/authMiddleware.js'; // Import auth middleware
 
 // ES Modules (import syntax), those are not available by default. So you need to manually define them like this
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
-import { verify } from 'crypto';
+
 dotenv.config(); 
 const __filename = fileURLToPath(import.meta.url);// __filename gives current file path
 const __dirname = dirname(__filename); // __dirname gives current folder path
@@ -37,12 +38,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 // protected routes
-app.get('/login', verifyToken, (req, res) => {
+app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login-page.html'));
 });
 
 app.get('/homepage', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
+});
+
+app.get('/frontpage', verifyToken, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'frontpage.html'));
 });
 
 //Static Page Routes (Clean URL)
@@ -152,6 +157,6 @@ app.post("/logout", function(req, res) {
 // Connect to DB and start server
 connectDB().then(() => {
   app.listen(5000, () => {
-    console.log('🚀 Server running at http://localhost:5000/frontpage');
+    console.log('🚀 Server running at http://localhost:5000');
   });
 });
