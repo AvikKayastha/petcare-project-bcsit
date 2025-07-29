@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import contactRoutes from './route/contactRoutes.js';
 import petsittingRoutes from './route/petsittingRoutes.js';
+import petgroomingRoutes from './route/petgroomingRoutes.js';
+import pettrainingRoutes from './route/pettrainingRoutes.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -21,11 +23,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API routes
 app.use('/api/contact', contactRoutes);
 app.use('/api/petsitting', petsittingRoutes);
-
+app.use('/api/petgrooming', petgroomingRoutes);
+app.use('/api/pettraining', pettrainingRoutes);
 // HTML route
 app.get('/pet_sitting_booking', (req, res) =>
   res.sendFile(path.join(__dirname, 'public', 'pet_sitting_booking.html'))
 );
+app.get('/pet_grooming_booking', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public', 'pet_grooming_booking.html'))
+);
+app.get('/pet_training_booking', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public', 'pet_training_booking.html'))
+);
+
 
 // Start server
 connectDB().then(() => {

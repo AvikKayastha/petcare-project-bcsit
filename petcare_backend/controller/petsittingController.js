@@ -15,7 +15,7 @@ export const submitPetsitting = async (req, res) => {
     });
 
     const saved = await newSitting.save();
-    console.log('Saved document:', saved); // Debug
+    console.log('Saved document:', saved); 
     return res.status(201).json({ message: "Petsitting saved successfully" });
   } catch (error) {
     console.error("Error saving petsitting:", error);
