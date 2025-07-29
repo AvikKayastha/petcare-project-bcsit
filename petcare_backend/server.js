@@ -53,7 +53,9 @@ app.get('/services', verifyToken, (req, res) => {
 app.get('/contact', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'contact.html'));
 });
-
+app.get('/success', verifyToken, allowUserOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'success.html'));
+});
 // User Booking Routes
 app.get('/pet_boarding_booking', verifyToken, allowUserOnly, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pet_boarding_booking.html'));
@@ -107,6 +109,9 @@ app.get('/caretaker/caretaker_payment', verifyToken, allowCaretakerOnly, (req, r
 app.get('/caretaker/caretaker_message', verifyToken, allowCaretakerOnly, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'caretaker', 'caretaker_message.html'));
 });
+app.get('/success', verifyToken, allowUserOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'success.html'));
+});
 
 // Static Pages
 app.get('/', (req, res) => res.redirect('/login_page'));
@@ -132,6 +137,7 @@ app.get("/complete-payment", async (req, res) => {
     const purchasedItemData = await PurchasedItem.findById(
       paymentInfo.response.transaction_uuid
     );
+    return res.redirect('/success');
 
     if (!purchasedItemData) {
       return res.status(500).json({
@@ -139,6 +145,7 @@ app.get("/complete-payment", async (req, res) => {
         message: "Purchase not found",
       });
     }
+
 
     // Create a new payment record in the database
     const paymentData = await Payment.create({
@@ -179,4 +186,3 @@ connectDB().then(() => {
     console.log('🚀 Server running at http://localhost:5000/frontpage');
   });
 });
- 

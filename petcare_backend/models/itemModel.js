@@ -3,9 +3,12 @@ import mongoose from 'mongoose';
 const itemSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    price: { type: Number, required: true },
-    inStock: { type: Boolean, required: true, default: true },
-    category: { type: String },
+    email: { type: String, required: true },
+    petName: { type: String, required: true },
+    petType: { type: String, required: true, enum:['dog','cat']  },
+    date: { type: Date, required: true },
+    hours: { type: Date, required: true, },
+    notes: { type: String, required: false },
   },
   { timestamps: true }
 );
