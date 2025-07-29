@@ -1,4 +1,4 @@
-import submitPetboarding from '../models/petboarding.js';
+import Petboarding from '../models/petboarding.js';
 
 export const submitPetboarding = async (req, res) => {
   console.log('Request Body:', req.body); // Debug
