@@ -5,15 +5,16 @@ import Petwalk from "../models/petwalk.js";
 
 dotenv.config();
 
+// Your existing function
 export const initiateEsewaPayment = async (req, res) => {
   console.log("Initiating eSewa payment...");
   console.log("Request body:", req.body); // Debug log
-  
+     
   try {
     // Create booking and generate payment details
     const booking = await Petwalk.create(req.body);
     console.log("Booking created:", booking._id); // Debug log
-    
+         
     const amount = 700;
     const uuid = booking._id.toString();
     const productCode = process.env.ESEWA_PRODUCT_CODE;
@@ -49,27 +50,66 @@ export const initiateEsewaPayment = async (req, res) => {
 
     // Return JSON response with payment URL instead of HTML form
     const paymentUrl = `${gateway}/api/epay/main/v2/form`;
-    
+         
     res.json({
       success: true,
       paymentUrl: paymentUrl,
       payload: payload
     });
-
-  } catch (err) {
+   } catch (err) {
     console.error("Esewa initiation error:", err);
-    
+         
     // Check if it's a database error
     if (err.name === 'ValidationError') {
-      return res.status(400).json({ 
-        message: "Invalid booking data", 
-        errors: err.errors 
-      });
+      return res.status(400).json({
+         message: "Invalid booking data",
+         errors: err.errors
+       });
     }
+         
+    res.status(500).json({
+       message: "Payment initiation failed",
+      error: err.message
+     });
+  }
+};
+
+// New function to get user bookings
+export const getUserBookings = async (req, res) => {
+  try {
+    console.log("Getting user bookings for:", req.user.email); // Debug log
+    console.log("🧠 Logged-in user:", req.user);
+
+    // Get bookings for the logged-in user by email
+    const bookings = await Petwalk.find({ email: req.user.email })
+      .sort({ createdAt: -1 }); // Sort by newest first
     
-    res.status(500).json({ 
-      message: "Payment initiation failed",
-      error: err.message 
+    console.log("Found bookings:", bookings.length); // Debug log
+    
+    // Format the data for frontend
+    const formattedBookings = bookings.map(booking => ({
+      service: "Pet Walking", // Since this is petwalk service
+      date: booking.date.toLocaleDateString('en-GB', { 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric' 
+      }),
+      status: "Confirmed", // You can add status field to your model later
+      petName: booking.petName,
+      hours: booking.hours
+    }));
+    
+    res.json({
+      success: true,
+      bookings: formattedBookings
+    });
+    
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch bookings",
+      error: error.message
     });
   }
 };

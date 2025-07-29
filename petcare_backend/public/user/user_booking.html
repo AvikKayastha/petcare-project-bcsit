@@ -51,59 +51,100 @@
         </aside>
 
         <main>
-            <h1>My Bookings</h1>
-            <div class="recent-orders">
-                <h2>Upcoming & Past Bookings</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Service</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Pet Grooming</td>
-                            <td>25 July 2025</td>
-                            <td>Confirmed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Veterinary</td>
-                            <td>15 July 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Boarding</td>
-                            <td>5 July 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Training</td>
-                            <td>25 June 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Grooming</td>
-                            <td>30 June 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Grooming</td>
-                            <td>15 June 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>Pet Training</td>
-                            <td>13 June 2025</td>
-                            <td>Completed</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="#">View All Bookings</a>
-            </div>
-        </main>
+        <h1>My Bookings</h1>
+        <div class="recent-orders">
+        <h2>Upcoming & Past Bookings</h2>
+
+    <!-- Loader -->
+    <div id="loading" style="display: none; text-align: center; padding: 10px;">
+        <p>Loading bookings...</p>
     </div>
+
+    <!-- Error message -->
+    <div id="error" style="display: none; color: red; text-align: center;">
+        <p>Failed to load bookings. Please try again later.</p>
+    </div>
+
+    <!-- Bookings Table -->
+    <table id="bookingsTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="bookingsBody">
+            <!-- Data will be loaded here from database -->
+        </tbody>
+    </table>
+
+    <a href="#">View All Bookings</a>
+</div>
+
+    </main>
+    </div>
+<script> 
+// Run this function when page loads
+window.addEventListener('load', function () { 
+    loadBookings(); 
+});
+
+// Function to fetch bookings from backend
+function loadBookings() { 
+    const loading = document.getElementById('loading'); 
+    const error = document.getElementById('error'); 
+    const table = document.getElementById('bookingsTable'); 
+    
+    if (loading) loading.style.display = 'block'; 
+    if (table) table.style.display = 'none'; 
+    if (error) error.style.display = 'none'; 
+    
+    // Fetch data from backend API
+    fetch('/api/petwalk/user_booking') 
+    .then(function (response) { 
+        if (response.ok) { 
+            return response.json(); 
+        } else { 
+            throw new Error('Failed to fetch bookings'); 
+        } 
+    }) 
+    .then(function (data) { 
+        console.log("✅ Bookings data:", data); 
+        if (loading) loading.style.display = 'none'; 
+        if (table) table.style.display = 'table'; 
+        
+        // Use the bookings array inside the data
+        displayBookings(data.bookings); 
+    }) 
+    .catch(function (error) { 
+        if (loading) loading.style.display = 'none'; 
+        if (error) error.style.display = 'block'; 
+        console.error('❌ Error loading bookings:', error); 
+    }); 
+}
+
+// Function to display bookings in the table
+function displayBookings(bookings) { 
+    var tbody = document.getElementById('bookingsBody'); 
+    tbody.innerHTML = ''; // Clear existing rows 
+    
+    // If no bookings found
+    if (!bookings || bookings.length === 0) { 
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align: center;">No bookings found</td></tr>'; 
+        return; 
+    } 
+    
+    // Create table rows for each booking
+    bookings.forEach(function (booking) { 
+        var row = document.createElement('tr'); 
+        row.innerHTML = '<td>' + booking.service + '</td>' + '<td>' + booking.date + '</td>' + '<td>' + booking.status + '</td>'; 
+        tbody.appendChild(row); 
+    }); 
+}
+</script>
+
+   
 </body>
 
 </html>
