@@ -46,7 +46,7 @@ app.get('/homepage', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'homepage.html'));
 });
 
-app.get('/frontpage', verifyToken, (req, res) => {
+app.get('/frontpage',  (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'frontpage.html'));
 });
 
@@ -54,21 +54,20 @@ app.get('/adminDasboard', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Admin-dashboard.html'));
 });
 
-app.get('/booking-admin', verifyToken, (req, res) => {
+app.get('/bookings-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Bookings(admin).html'));
 });
 
-app.get('/customer-admin', verifyToken, (req, res) => {
+app.get('/customers-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'customers(admin).html'));
 });
 
-app.get('/message-admin', verifyToken, (req, res) => {
+app.get('/messages-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Messages(admin).html'));
 });
 
 
 //Static Page Routes (Clean URL)
-app.get('/', (req, res) => res.redirect('/login'));
 app.get('/homepage', (req, res) => res.sendFile(path.join(__dirname, 'public', 'homepage.html')));
 
 // Use user routes under /api path
