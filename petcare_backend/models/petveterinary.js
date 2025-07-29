@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const petboardSchema = new mongoose.Schema({
+const petveterinarySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -9,25 +9,25 @@ const petboardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pet_name: {
+  petName: {
     type: String,
     required: true,
   },
-  pet_type: {
+  petType: {
     type: String,
     required: true,
   },
   date: {
-    type: date,
+    type: Date,
     required: true,
   },
-  days: {
-    type: number,
+  hours: {
+    type: Number,
     required: true,
   },
-  message: {
+ notes: {
     type: String,
-    required: true,
+    required: false,
   },
   createdAt: {
     type: Date,
@@ -35,6 +35,6 @@ const petboardSchema = new mongoose.Schema({
   },
 });
 
-const boarding = mongoose.model('boarding', petboardSchema );
+const petveterinary = mongoose.model('Petveterinary', petveterinarySchema );
 
-export default boarding;
+export default petveterinary;

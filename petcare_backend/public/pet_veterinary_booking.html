@@ -182,32 +182,32 @@
   <div class="container">
     <div class="form-section">
       <h3 class="text-center mb-4">Book Your Pet Veterinary Service</h3>
-      <form>
+      <form id="petveterinaryForm">
         <div class="row g-3">
           <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="text" class="form-control" name="name" placeholder="Your Name" required>
           </div>
           <div class="col-md-6">
-            <input type="email" class="form-control" placeholder="Your Email" required>
+            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
           </div>
           <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Pet Name" required>
+            <input type="text" class="form-control" name="petName" placeholder="Pet Name" required>
           </div>
           <div class="col-md-6">
-            <select class="form-select" required>
+            <select class="form-select" name="petType" required>
               <option selected disabled>Type of Pet</option>
               <option>Dog</option>
               <option>Cat</option>
             </select>
           </div>
           <div class="col-md-6">
-            <input type="date" class="form-control" required>
+            <input type="date" name="date" class="form-control" required>
           </div>
           <div class="col-md-6">
-            <input type="number" class="form-control" placeholder="Number of Visit" required>
+            <input type="number" name="hours" class="form-control" placeholder="Number of Visit" required>
           </div>
           <div class="col-12">
-            <textarea class="form-control" rows="4" placeholder="Special Instructions (Optional)"></textarea>
+            <textarea class="form-control" name="notes" rows="4" placeholder="Special Instructions (Optional)"></textarea>
           </div>
           <div class="col-12 text-center">
             <button type="submit" class="btn btn-primary px-5 mt-3">Book Now</button>
@@ -222,9 +222,56 @@
 <footer class="text-center py-4 bg-dark text-light mt-5">
   <p>&copy; 2025 Petcare. All rights reserved.</p>
 </footer>
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+  <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">Booking submitted successfully!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const form = document.getElementById("petveterinaryForm");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    // Get form data as FormData object
+    const formData = new FormData(form);
+
+    // Convert FormData to plain object for JSON serialization
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5000/api/petveterinary", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),  // <-- Corrected here
+      });
+
+      if (response.ok) {
+        // Show success toast
+        const toast = new bootstrap.Toast(document.getElementById("liveToast"));
+        toast.show();
+
+        // Reset form after successful submission
+        form.reset();
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      alert("Something went wrong");
+      console.error(error);
+    }
+  });
+</script>
 
 </body>
 </html>
