@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href="admin/Index.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <a href="Admin-dashboard.html">
+                        <h2>PET<span class="danger">CARE</span></h2>
+                    </a>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class='bx  bx-x'></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="/adminDasboard">
+                    <i class='bx  bx-dashboard'></i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/customers-admin">
+                    <i class='bx  bx-user-square'></i>
+                    <h3>Customers</h3>
+                </a>
+                <a href="/bookings-admin" class="active">
+                    <i class='bx  bx-contact-book'></i>
+                    <h3>Bookings</h3>
+                </a>
+                <a href="/messages-admin">
+                    <i class='bx  bx-envelope'></i>
+                    <h3>Messages</h3>
+                    <span class="message-count">2</span>
+                </a>
+                <a href="#">
+                    <i class=></i>
+                    <h3></h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END OF ASIDE -->
+
+        <main>
+            <div class="recent-orders">
+                <h2>All Service Bookings</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Pet Name</th>
+                            <th>Pet Type</th>
+                            <th>Date</th>
+                            <th>Hour</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% bookings.forEach(booking => { %>
+                            <tr>
+                                <td><%= booking.name %></td>
+                                <td><%= booking.email %></td>
+                                <td><%= booking.petName %></td>
+                                <td><%= booking.petType %></td>
+                                <td><%= booking.date %></td>
+                                <td><%= booking.hours %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <a href="#">View All Bookings</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

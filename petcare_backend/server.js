@@ -1,12 +1,12 @@
 import express from 'express';
 import userModel from './models/user.js';
-import Contact from './models/contact.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import userRoutes from './route/userRoutes.js'; // Import user routes
 import messsageRoutes from './route/messageRoutes.js'; // Import message routes
+import bookingRoutes from './route/bookingRoutes.js'; // Import booking routes
 import connectDB from './config/db.js'; 
 import { verifyToken } from './middleware/authMiddleware.js'; // Import auth middleware
 
@@ -41,6 +41,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
 
 app.use('/', messsageRoutes); // Use message routes
+app.use(bookingRoutes); // Use booking routes
 
 // static routes
 app.get('/login', (req, res) => {
@@ -108,14 +109,10 @@ app.post('/delete-user/:id', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/messages-admin', verifyToken, async (req, res) => {
-  try {
-    const contacts = await Contact.find().sort({ createdAt: -1 });
-    res.render('messages', { contacts }); // render messages.ejs from /views
-  } catch (err) {
-    res.status(500).send('Error loading messages');
-  }
+app.get('/bookings-admin', verifyToken, (req, res) => {
+  res.render('admin/Bookings', { title: 'Admin Bookings', user: req.user });
 });
+
 
 app.get('/messages-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Messages(admin).html'));
