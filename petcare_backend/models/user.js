@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['owner', 'caretaker'],
     required: true
-}
+},
 
   });
 

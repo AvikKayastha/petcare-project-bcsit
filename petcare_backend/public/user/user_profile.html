@@ -180,25 +180,15 @@
                     <input type="file" id="uploadPic" accept="image/*">
                 </div>
                 <div id="profileView">
-                    <p><b>Full Name:</b> Kripa Karki</p>
-                    <p><b>Email:</b> kripa@example.com</p>
-                    <p><b>Phone:</b> 9841234567</p>
-                    <p><b>Address:</b> Kathmandu, Nepal</p>
-                    <p><b>Number of Pets:</b> 2</p>
+                    <p><b>Full Name:</b> ${user.name || ""}</p>
+                    <p><b>Email:</b> ${user.email || ""}</p>
                     <button id="editBtn">Edit Profile</button>
                 </div>
 
                 <form id="profileForm" style="display: none;">
-                    <div class="form-group"><label for="name">Full Name</label><input type="text" id="name"
-                            value="Kripa Karki" required></div>
-                    <div class="form-group"><label for="email">Email</label><input type="email" id="email"
-                            value="kripa@example.com" required></div>
-                    <div class="form-group"><label for="phone">Phone</label><input type="text" id="phone"
-                            value="9841234567" required></div>
-                    <div class="form-group"><label for="address">Address</label><input type="text" id="address"
-                            value="Kathmandu, Nepal"></div>
-                    <div class="form-group"><label for="pets">Number of Pets</label><input type="number" id="pets"
-                            value="2" min="0"></div>
+                    <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" value="${user.name || ""}" required></div>
+                    <div class="form-group"><label for="email">Email</label><input type="email" id="email" value="${user.email || ""}" required></div>
+
                     <div class="form-buttons">
                         <button type="submit" class="primary">Save Changes</button>
                         <button type="button" id="cancelBtn" class="secondary">Cancel</button>
@@ -210,52 +200,36 @@
     </div>
 
     <script>
-        const editBtn = document.getElementById('editBtn');
-        const profileView = document.getElementById('profileView');
-        const profileForm = document.getElementById('profileForm');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const saveMessage = document.getElementById('saveMessage');
-        const uploadPic = document.getElementById('uploadPic');
-        const profileImage = document.getElementById('profileImage');
-
-        editBtn.addEventListener('click', () => {
-            profileView.style.display = 'none';
-            profileForm.style.display = 'flex';
-        });
-
-        cancelBtn.addEventListener('click', () => {
-            saveMessage.style.display = 'none';
-            profileForm.style.display = 'none';
-            profileView.style.display = 'block';
-        });
-
-        profileForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            profileView.innerHTML = `
-    <p><b>Full Name:</b> ${document.getElementById('name').value}</p>
-    <p><b>Email:</b> ${document.getElementById('email').value}</p>
-    <p><b>Phone:</b> ${document.getElementById('phone').value}</p>
-    <p><b>Address:</b> ${document.getElementById('address').value}</p>
-    <p><b>Number of Pets:</b> ${document.getElementById('pets').value}</p>
+    window.addEventListener('DOMContentLoaded', async () => {
+try {
+const res = await fetch('/api/userinfo');
+const user = await res.json();
+if (res.ok) {
+  // Fill profile view
+  profileView.innerHTML = `
+    <p><b>Full Name:</b> ${user.name || ""}</p>
+    <p><b>Email:</b> ${user.email || ""}</p>
     <button id="editBtn">Edit Profile</button>
   `;
-            saveMessage.style.display = 'block';
-            setTimeout(() => {
-                saveMessage.style.display = 'none';
-                profileForm.style.display = 'none';
-                profileView.style.display = 'block';
-                document.getElementById('editBtn').addEventListener('click', () => {
-                    profileView.style.display = 'none';
-                    profileForm.style.display = 'flex';
-                });
-            }, 1200);
-        });
 
-        uploadPic.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) profileImage.src = URL.createObjectURL(file);
-        });
-    </script>
+  // Fill form fields
+  document.getElementById('name').value = user.name || "";
+  document.getElementById('email').value = user.email || "";
+
+  // Rebind Edit button
+  document.getElementById('editBtn').addEventListener('click', () => {
+    profileView.style.display = 'none';
+    profileForm.style.display = 'flex';
+  });
+} else {
+  console.error("Failed to load user data:", user.message);
+}
+} catch (err) {
+console.error("Error fetching user data:", err);
+}
+});
+
+</script>
 </body>
 
 </html>

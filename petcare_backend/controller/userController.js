@@ -64,11 +64,31 @@ export const loginUser = async (req, res) => {
 };
 
 export const getUserInfo = async (req, res) => {
-  try {
-    res.json({ email: req.user.email, role: req.user.role });
-  } catch (err) {
-    res.status(500).send("Failed to get user info");
-  }
+try {
+const user = await userModel.findOne({ email: req.user.email }).select('-password');
+if (!user) return res.status(404).json({ message: "User not found" });
+res.json({
+  name: user.name,
+  email: user.email,
+  role: user.role,
+});
+} catch (err) {
+console.error("getUserInfo error:", err);
+res.status(500).send("Failed to get user info");
+}
+};
+
+export const getUserProfile = async (req, res) => {
+try {
+const user = await User.findOne({ email: req.user.email }).select("-password");
+
+if (!user) {
+return res.status(404).json({ message: "User not found" });
+}
+res.json(user);
+} catch (error) {
+res.status(500).json({ message: "Failed to load user profile" });
+}
 };
 
 // Logout

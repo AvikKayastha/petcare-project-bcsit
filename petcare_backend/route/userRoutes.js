@@ -1,15 +1,7 @@
 import express from 'express';
-import {
-  createUser,
-  loginUser,
-  logoutUser,
-  getUserInfo
-} from '../controller/userController.js';
-
-import {
-  verifyToken,
-  allowUserOnly
-} from '../middleware/authMiddleware.js';
+import {createUser,loginUser,logoutUser,getUserInfo} from '../controller/userController.js';
+import {verifyToken,allowUserOnly} from '../middleware/authMiddleware.js';
+import{getUserProfile} from '../controller/userController.js';
 
 const router = express.Router();
 
@@ -41,5 +33,8 @@ router.get('/user_payment', verifyToken, allowUserOnly, (req, res) => {
 router.get('/user_message', verifyToken, allowUserOnly, (req, res) => {
   res.render('user_message');
 });
+
+router.get('user_profile', verifyToken, allowUserOnly, getUserProfile);
+
 
 export default router;
