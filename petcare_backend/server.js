@@ -1,14 +1,16 @@
 import express from 'express';
 import userModel from './models/user.js';
+import Contact from './models/contact.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import userRoutes from './route/userRoutes.js'; // Import user routes
-import connectDB from './config/db.js';
+import messsageRoutes from './route/messageRoutes.js'; // Import message routes
+import connectDB from './config/db.js'; 
 import { verifyToken } from './middleware/authMiddleware.js'; // Import auth middleware
 
-// ES Modules (import syntax), those are not available by default. So you need to manually define them like this
+// ES Modules (import syntax), those are not available by default. manually define them 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
@@ -37,6 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
+
+app.use('/', messsageRoutes); // Use message routes
 
 // static routes
 app.get('/login', (req, res) => {
@@ -104,6 +108,15 @@ app.post('/delete-user/:id', verifyToken, async (req, res) => {
   }
 });
 
+app.get('/messages-admin', verifyToken, async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.render('messages', { contacts }); // render messages.ejs from /views
+  } catch (err) {
+    res.status(500).send('Error loading messages');
+  }
+});
+
 app.get('/messages-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Messages(admin).html'));
 });
@@ -149,7 +162,7 @@ app.post('/create', async (req, res) => {
     // set access token cookie
     res.cookie('token', accessToken, {
       httpOnly: true,
-      maxAge: 5 * 60 * 1000, // 5 minutes
+      maxAge: 60 * 60 * 1000, // 1 hour
       sameSite: 'strict', // Prevent Cross-Site Request Forgery.
       secure: isProduction 
     });

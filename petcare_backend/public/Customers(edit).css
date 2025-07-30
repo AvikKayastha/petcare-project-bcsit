@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-primary: #7380ec;
+  --color-danger: #ff7782;
+  --color-white: #fff;
+  --color-dark: #363949;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
+  --box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-dark);
+  padding: 2rem;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 1.2rem;
+  box-shadow: var(--box-shadow);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--color-primary);
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.edit-form input,
+.edit-form select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.edit-form select {
+  background-color: #fff;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-edit:hover {
+  background-color: #5a66c6;
+}
+
+.btn-delete {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+}
+
+.btn-delete:hover {
+  background-color: #e05260;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 1.2rem;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
