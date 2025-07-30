@@ -60,26 +60,15 @@ app.get('/bookings-admin', verifyToken, (req, res) => {
 });
 
 app.get('/customers-admin', verifyToken, async (req, res) => {
-  console.log('=== CUSTOMERS ROUTE ACCESSED ===');
-  console.log('User from token:', req.user);
-  
   try {
-    console.log('1. About to query database...');
     const users = await userModel.find({ role: { $ne: 'admin' } });
-    console.log('2. Database query successful. Users found:', users.length);
-    console.log('3. Users data:', users);
-    
-    console.log('4. About to render template: customer-admin');
-    res.render('customer-admin', { users });
-    console.log('5. Template rendered successfully');
-    
+    res.render('customer-admin', { users }); 
   } catch (err) {
-    console.error('=== ERROR IN CUSTOMERS ROUTE ===');
-    console.error('Error message:', err.message);
-    console.error('Full error:', err);
+    console.error(err);
     res.status(500).send("Failed to load customers.");
   }
 });
+
 
 // Edit User (GET)
 app.get('/edit-user/:id', verifyToken, async (req, res) => {
