@@ -35,6 +35,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
 
 // static routes
@@ -58,8 +59,60 @@ app.get('/bookings-admin', verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin', 'Bookings(admin).html'));
 });
 
-app.get('/customers-admin', verifyToken, (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin', 'customers(admin).html'));
+app.get('/customers-admin', verifyToken, async (req, res) => {
+  console.log('=== CUSTOMERS ROUTE ACCESSED ===');
+  console.log('User from token:', req.user);
+  
+  try {
+    console.log('1. About to query database...');
+    const users = await userModel.find({ role: { $ne: 'admin' } });
+    console.log('2. Database query successful. Users found:', users.length);
+    console.log('3. Users data:', users);
+    
+    console.log('4. About to render template: customer-admin');
+    res.render('customer-admin', { users });
+    console.log('5. Template rendered successfully');
+    
+  } catch (err) {
+    console.error('=== ERROR IN CUSTOMERS ROUTE ===');
+    console.error('Error message:', err.message);
+    console.error('Full error:', err);
+    res.status(500).send("Failed to load customers.");
+  }
+});
+
+// Edit User (GET)
+app.get('/edit-user/:id', verifyToken, async (req, res) => {
+  try {
+    const user = await userModel.findById(req.params.id);
+    res.render('edit-user', { user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to load user.");
+  }
+});
+
+// Edit User (POST)
+app.post('/edit-user/:id', verifyToken, async (req, res) => {
+  try {
+    const { name, email, role } = req.body;
+    await userModel.findByIdAndUpdate(req.params.id, { name, email, role });
+    res.redirect('/customers-admin');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to update user.");
+  }
+});
+
+// Delete User
+app.post('/delete-user/:id', verifyToken, async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    res.redirect('/customers-admin');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to delete user.");
+  }
 });
 
 app.get('/messages-admin', verifyToken, (req, res) => {

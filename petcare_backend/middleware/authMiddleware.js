@@ -4,7 +4,7 @@ export function verifyToken(req, res, next) {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.redirect('/login_page');
+    return res.redirect('/login');
   }
 
   try {
@@ -14,6 +14,6 @@ export function verifyToken(req, res, next) {
     next();
   } catch (err) {
     res.clearCookie("token");
-    return res.redirect('/login_page');
+    return res.redirect('/login');
   }
 }

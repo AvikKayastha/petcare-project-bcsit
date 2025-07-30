@@ -505,3 +505,54 @@ margin-bottom: 1rem;
     font-size: 13px;
     color: #999;
 }
+
+/* Customer Action Buttons */
+.primary.btn-edit {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-right: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.primary.btn-edit:hover {
+  background-color: #5a66c6;
+}
+
+.danger.btn-delete {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.danger.btn-delete:hover {
+  background-color: #e05260;
+}
+
+/* Footer */
+    .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .page-wrapper .content {
+    flex: 1;
+  }
+  footer {
+    background: var(--color-white);
+    color: var(--color-dark-variant);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    box-shadow: var(--box-shadow);
+  }
+   
