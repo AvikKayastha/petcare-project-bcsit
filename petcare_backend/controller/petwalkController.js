@@ -1,43 +1,43 @@
-import axios from "axios";
 import crypto from "crypto";
 import dotenv from "dotenv";
 import Petwalk from "../models/petwalk.js";
 
 dotenv.config();
 
-// Your existing function
+// Initiate eSewa Payment with dynamic price
 export const initiateEsewaPayment = async (req, res) => {
-  console.log("Initiating eSewa payment...");
-  console.log("Request body:", req.body); // Debug log
-     
   try {
-    // Create booking and generate payment details
+    console.log("Initiating eSewa payment...");
+    console.log("Request body:", req.body);
+
+    // Destructure hours and price per hour
+    const { hours } = req.body;
+    const pricePerHour = 700; // or pull from DB or config
+    const totalAmount = hours * pricePerHour;
+
+    // Create booking in DB
     const booking = await Petwalk.create(req.body);
-    console.log("Booking created:", booking._id); // Debug log
-         
-    const amount = 700;
     const uuid = booking._id.toString();
+
     const productCode = process.env.ESEWA_PRODUCT_CODE;
     const secret = process.env.ESEWA_SECRET_KEY;
     const gateway = process.env.ESEWA_GATEWAY_URL;
 
-    // Verify environment variables
     if (!productCode || !secret || !gateway) {
-      console.error("Missing environment variables:", { productCode, secret, gateway });
-      return res.status(500).json({ message: "Server configuration error" });
+      return res.status(500).json({ message: "Missing eSewa config" });
     }
 
     const signature = crypto
       .createHmac("sha256", secret)
-      .update(`total_amount=${amount},transaction_uuid=${uuid},product_code=${productCode}`)
+      .update(`total_amount=${totalAmount},transaction_uuid=${uuid},product_code=${productCode}`)
       .digest("base64");
 
     const payload = {
-      amount,
+      amount: totalAmount,
       tax_amount: 0,
       product_service_charge: 0,
       product_delivery_charge: 0,
-      total_amount: amount,
+      total_amount: totalAmount,
       transaction_uuid: uuid,
       product_code: productCode,
       signed_field_names: "total_amount,transaction_uuid,product_code",
@@ -46,70 +46,48 @@ export const initiateEsewaPayment = async (req, res) => {
       failure_url: `${process.env.CLIENT_URL}/pet_walking_booking?success=false`,
     };
 
-    console.log("Payment payload:", payload); // Debug log
-
-    // Return JSON response with payment URL instead of HTML form
     const paymentUrl = `${gateway}/api/epay/main/v2/form`;
-         
+
     res.json({
       success: true,
-      paymentUrl: paymentUrl,
-      payload: payload
+      paymentUrl,
+      payload
     });
-   } catch (err) {
+  } catch (err) {
     console.error("Esewa initiation error:", err);
-         
-    // Check if it's a database error
-    if (err.name === 'ValidationError') {
-      return res.status(400).json({
-         message: "Invalid booking data",
-         errors: err.errors
-       });
-    }
-         
     res.status(500).json({
-       message: "Payment initiation failed",
+      success: false,
+      message: "Payment initiation failed",
       error: err.message
-     });
+    });
   }
 };
 
-// New function to get user bookings
+// Get Bookings for Logged-in User
 export const getUserBookings = async (req, res) => {
   try {
-    console.log("Getting user bookings for:", req.user.email); // Debug log
-    console.log("🧠 Logged-in user:", req.user);
+    const userEmail = req.user?.email;
+    if (!userEmail) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
 
-    // Get bookings for the logged-in user by email
-    const bookings = await Petwalk.find({ email: req.user.email })
-      .sort({ createdAt: -1 }); // Sort by newest first
-    
-    console.log("Found bookings:", bookings.length); // Debug log
-    
-    // Format the data for frontend
-    const formattedBookings = bookings.map(booking => ({
-      service: "Pet Walking", // Since this is petwalk service
-      date: booking.date.toLocaleDateString('en-GB', { 
-        day: 'numeric', 
-        month: 'long', 
-        year: 'numeric' 
+    const bookings = await Petwalk.find({ email: userEmail }).sort({ createdAt: -1 });
+
+    const formatted = bookings.map(booking => ({
+      service: "Pet Walking",
+      date: booking.date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
       }),
-      status: "Confirmed", // You can add status field to your model later
+      status: "Confirmed",
       petName: booking.petName,
       hours: booking.hours
     }));
-    
-    res.json({
-      success: true,
-      bookings: formattedBookings
-    });
-    
+
+    res.json({ success: true, bookings: formatted });
   } catch (error) {
     console.error("Error fetching bookings:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch bookings",
-      error: error.message
-    });
+    res.status(500).json({ success: false, message: "Failed to fetch bookings" });
   }
 };
