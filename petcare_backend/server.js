@@ -45,7 +45,12 @@ app.get('/pet_veterinary_booking', (req, res) =>
 app.get('/pet_boarding_booking', (req, res) =>
   res.sendFile(path.join(__dirname, 'public', 'pet_boarding_booking.html'))
 );
-
+app.get('/homepage', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public', 'homepage.html'))
+);
+app.get('/', (req, res) => {
+res.redirect('homepage')
+});
 
 // Start server
 connectDB().then(() => {
